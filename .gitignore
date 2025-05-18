@@ -1,15 +1,64 @@
+# --- Android Studio / IntelliJ IDEA ---
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+.idea/
+.idea/*
+
+# Erlaube bestimmte sinnvolle Projektdateien
+!.idea/codeStyles
+!.idea/inspectionProfiles
+!.idea/runConfigurations
+
+# --- Gradle ---
+.gradle/
+build/
+*/build/
+!gradle-wrapper.jar
+
+# --- Local Properties ---
 local.properties
+
+# --- OS / Editor / Tools ---
+.DS_Store
+Thumbs.db
+*.log
+
+# --- Kotlin / Java ---
+*.class
+*.jar
+*.war
+*.ear
+
+# --- Android NDK / CMake / Native ---
+.cxx/
+.externalNativeBuild/
+obj/
+
+# --- APK / Output Files ---
+*.apk
+*.ap_
+*.aab
+
+# --- Keystore (niemals commiten!) ---
+*.jks
+*.keystore
+
+# --- Testing / Coverage ---
+/test-output/
+*.ec
+
+# --- Misc ---
+captures/
+output.json
+.idea/httpRequests/
+
+# --- Compose Preview ---
+*.preview
+
+# --- Crashlytics / Firebase (falls verwendet) ---
+crashlytics-build.properties
+fabric.properties
+
+# --- Fastlane (optional) ---
+fastlane/report.xml
+fastlane/screenshots/
+fastlane/test_output/

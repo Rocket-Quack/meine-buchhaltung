@@ -1,0 +1,59 @@
+<resources>
+    <style name="Theme.TechBright" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/tech_bright_primary</item>
+        <item name="colorOnPrimary">@color/tech_bright_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/tech_bright_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/tech_bright_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/tech_bright_secondary</item>
+        <item name="colorOnSecondary">@color/tech_bright_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/tech_bright_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/tech_bright_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/tech_bright_tertiary</item>
+        <item name="colorOnTertiary">@color/tech_bright_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/tech_bright_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/tech_bright_onTertiaryContainer</item>
+        <item name="colorError">@color/tech_bright_error</item>
+        <item name="colorOnError">@color/tech_bright_onError</item>
+        <item name="colorErrorContainer">@color/tech_bright_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/tech_bright_onErrorContainer</item>
+        <item name="android:colorBackground">@color/tech_bright_background</item>
+        <item name="colorOnBackground">@color/tech_bright_onBackground</item>
+        <item name="colorSurface">@color/tech_bright_surface</item>
+        <item name="colorOnSurface">@color/tech_bright_onSurface</item>
+        <item name="colorSurfaceVariant">@color/tech_bright_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/tech_bright_onSurfaceVariant</item>
+        <item name="colorOutline">@color/tech_bright_outline</item>
+        <item name="colorOutlineVariant">@color/tech_bright_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/tech_bright_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/tech_bright_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/tech_bright_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/tech_bright_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/tech_bright_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/tech_bright_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/tech_bright_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/tech_bright_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/tech_bright_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/tech_bright_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/tech_bright_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/tech_bright_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/tech_bright_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/tech_bright_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/tech_bright_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/tech_bright_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/tech_bright_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/tech_bright_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/tech_bright_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/tech_bright_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/tech_bright_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/tech_bright_surfaceContainerHighest</item>
+    </style>
+
+    <style name="Theme.TechBright.NoActionBar" parent="Theme.TechBright">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.TechBright.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.TechBright.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

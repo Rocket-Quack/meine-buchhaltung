@@ -10,12 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MeineBuchhaltung"
+        android:theme="@style/Theme.TechBright"
         tools:targetApi="31">
         <activity
             android:name=".ui.company.CompanySelectActivity"
             android:exported="true"
-            android:theme="@style/Theme.MeineBuchhaltung.NoActionBar">
+            android:theme="@style/Theme.TechBright.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

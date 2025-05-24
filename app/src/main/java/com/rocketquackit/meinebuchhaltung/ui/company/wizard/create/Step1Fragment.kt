@@ -8,14 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.rocketquackit.meinebuchhaltung.R
-import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
 
 class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
     // ViewModel wird aus der Activity geholt
-    private val viewModel: CreateCompanyViewModel by activityViewModels {
-        val db = CompanyDatabase.getDatabase(requireContext(), "firmen.db")
-        CreateCompanyViewModelFactory(db.firmaDao())
-    }
+    private val viewModel: CreateCompanyViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

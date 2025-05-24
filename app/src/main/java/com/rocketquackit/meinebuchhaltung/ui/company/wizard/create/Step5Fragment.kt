@@ -8,14 +8,11 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.rocketquackit.meinebuchhaltung.R
-import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
 import com.rocketquackit.meinebuchhaltung.ui.company.CompanySelectActivity
 
 class Step5Fragment : Fragment(R.layout.fragment_company_create_step5) {
-    private val viewModel: CreateCompanyViewModel by activityViewModels {
-        val db = CompanyDatabase.getDatabase(requireContext(), "firmen.db")
-        CreateCompanyViewModelFactory(db.firmaDao())
-    }
+    // ViewModel wird aus der Activity geholt
+    private val viewModel: CreateCompanyViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val inputIban = view.findViewById<EditText>(R.id.inputIBAN)

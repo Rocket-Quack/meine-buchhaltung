@@ -11,6 +11,6 @@ interface CompanyDao {
     @Delete
     suspend fun delete(company: Company)
 
-    @Query("SELECT * FROM companys")
+    @Query("SELECT * FROM company")
     suspend fun getAll(): List<Company>
 }

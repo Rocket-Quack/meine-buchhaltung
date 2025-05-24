@@ -35,20 +35,17 @@ class CompanySelectActivity : AppCompatActivity() {
         // Firmen laden
         loadFirmen()
 
-        // Firma erstellen
+        // Neue Firma anlegen
         buttonErstellen.setOnClickListener {
-            val name = "Firma ${System.currentTimeMillis()}"
-            val newCompany = Company(name = name)
-            lifecycleScope.launch {
-                db.firmaDao().insert(newCompany)
-                loadFirmen()
-            }
+            // Startet den Wizard (CreateCompanyActivity)
+            val intent = Intent(this, com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.CreateCompanyActivity::class.java)
+            startActivity(intent)
         }
 
         // Firma auswählen
         listView.setOnItemClickListener { _, _, position, _ ->
             selectedCompany = firmenListe[position]
-            Toast.makeText(this, "Ausgewählt: ${selectedCompany?.name}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ausgewählt: ${selectedCompany?.companyName}", Toast.LENGTH_SHORT).show()
         }
 
         // Firma laden
@@ -57,11 +54,11 @@ class CompanySelectActivity : AppCompatActivity() {
 
                 // Ausgewählter Firmenname im Speicher ablegen
                 val prefs = getSharedPreferences("firma_prefs", MODE_PRIVATE)
-                prefs.edit().putString("aktiveFirma", firma.name).apply()
+                prefs.edit().putString("aktiveFirma", firma.companyName).apply()
 
                 // MainActivity starten
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("firmaName", firma.name)
+                intent.putExtra("firmaName", firma.companyName)
                 startActivity(intent)
                 finish()
             } ?: run {
@@ -75,7 +72,7 @@ class CompanySelectActivity : AppCompatActivity() {
             val firmen = db.firmaDao().getAll()
             firmenListe.clear()
             firmenListe.addAll(firmen)
-            val namen = firmenListe.map { it.name }
+            val namen = firmenListe.map { it.companyName }
             adapter = ArrayAdapter(this@CompanySelectActivity, android.R.layout.simple_list_item_1, namen)
             listView.adapter = adapter
         }

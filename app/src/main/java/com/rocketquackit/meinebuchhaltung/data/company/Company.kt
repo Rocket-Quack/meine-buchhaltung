@@ -2,12 +2,14 @@ package com.rocketquackit.meinebuchhaltung.data.company
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 
 @Entity(tableName = "company")
 data class Company(
     @PrimaryKey(autoGenerate = true) val companyId: Int = 0,
     val companyName: String, // Unternehmensnamen
-    val businessType: String, // Unternehmensform (GmbH, UG)
+    @TypeConverters(CompanyTypeConverter::class)
+    val businessType: CompanyType, // Unternehmensform (GmbH, UG)
     val taxNumber: String, // Steueridentifikationsnummer
     val vatNumber: String?, // Umsatzsteueridentifikationsnummer (optional)
     val registrationNumber: String?, // Registrierungsnummer und Register Gericht (optional)

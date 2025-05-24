@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.rocketquackit.meinebuchhaltung.ui.customer.Customer
 import com.rocketquackit.meinebuchhaltung.ui.customer.CustomerDao
 
@@ -16,6 +17,7 @@ import com.rocketquackit.meinebuchhaltung.ui.customer.CustomerDao
 
 // @Database → definiert, welche Tabellen (Entities) und Version verwendet werden
 @Database(entities = [Company::class, Customer::class], version = 1)
+@TypeConverters(CompanyTypeConverter::class)
 abstract class CompanyDatabase : RoomDatabase() {
 
     // Zugriff auf die Tabelle "firmen"

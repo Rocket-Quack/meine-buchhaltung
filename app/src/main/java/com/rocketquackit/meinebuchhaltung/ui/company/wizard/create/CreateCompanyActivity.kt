@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
-import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
 
 class CreateCompanyActivity : AppCompatActivity() {
 

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "dda1644b41dd84e4551d43724acce4c1",
+    "identityHash": "eef578e36400c7ef8ff49b6837c3ede8",
     "entities": [
       {
         "tableName": "company",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`companyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `companyName` TEXT NOT NULL, `businessType` TEXT NOT NULL, `taxNumber` TEXT NOT NULL, `vatNumber` TEXT, `registrationNumber` TEXT, `address` TEXT NOT NULL, `phoneNumber` TEXT, `email` TEXT NOT NULL, `website` TEXT, `companyBankIBAN` TEXT, `companyBankBIC` TEXT, `companyBankName` TEXT, `companyLogo` BLOB, `createdAt` INTEGER NOT NULL, `lastModifiedAt` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`companyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `companyName` TEXT NOT NULL, `businessType` TEXT NOT NULL, `businessCategory` TEXT NOT NULL, `taxNumber` TEXT NOT NULL, `vatNumber` TEXT, `registrationNumber` TEXT, `address` TEXT NOT NULL, `phoneNumber` TEXT, `email` TEXT NOT NULL, `website` TEXT, `companyBankIBAN` TEXT, `companyBankBIC` TEXT, `companyBankName` TEXT, `companyLogo` BLOB, `createdAt` INTEGER NOT NULL, `lastModifiedAt` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "companyId",
@@ -23,6 +23,12 @@
           {
             "fieldPath": "businessType",
             "columnName": "businessType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessCategory",
+            "columnName": "businessCategory",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -167,7 +173,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dda1644b41dd84e4551d43724acce4c1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eef578e36400c7ef8ff49b6837c3ede8')"
     ]
   }
 }

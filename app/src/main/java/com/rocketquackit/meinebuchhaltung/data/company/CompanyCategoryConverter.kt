@@ -3,17 +3,18 @@ package com.rocketquackit.meinebuchhaltung.data.company
 import androidx.room.TypeConverter
 import com.rocketquackit.meinebuchhaltung.data.converter.EnumConverter
 
-class CompanyTypeConverter {
+class CompanyCategoryConverter {
 
     private val converter = EnumConverter()
 
     @TypeConverter
-    fun fromCompanyType(value: CompanyType?): String? {
+    fun fromCompanyCategory(value: CompanyCategory?): String? {
         return converter.fromEnum(value)
     }
 
     @TypeConverter
-    fun toCompanyType(value: String?): CompanyType? {
-        return value?.let { CompanyType.valueOf(it) }
+    fun toCompanyCategory(value: String?): CompanyCategory? {
+        return value?.let { CompanyCategory.valueOf(it) }
     }
+
 }

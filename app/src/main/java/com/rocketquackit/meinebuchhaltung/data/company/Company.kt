@@ -10,6 +10,8 @@ data class Company(
     val companyName: String, // Unternehmensnamen
     @TypeConverters(CompanyTypeConverter::class)
     val businessType: CompanyType, // Unternehmensform (GmbH, UG)
+    @TypeConverters(CompanyCategoryConverter::class)
+    val businessCategory: CompanyCategory, // Kleingewerbe
     val taxNumber: String, // Steueridentifikationsnummer
     val vatNumber: String?, // Umsatzsteueridentifikationsnummer (optional)
     val registrationNumber: String?, // Registrierungsnummer und Register Gericht (optional)

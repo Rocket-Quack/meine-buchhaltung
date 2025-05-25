@@ -39,7 +39,8 @@ abstract class CompanyDatabase : RoomDatabase() {
                 context.applicationContext,
                 CompanyDatabase::class.java,
                 dbName
-            ).build()
+            ).fallbackToDestructiveMigration(dropAllTables = true)
+                .build()
         }
     }
 }

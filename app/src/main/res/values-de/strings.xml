@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meine Buchhaltung</string>
+    <string name="nextButton">Weiter</string>
+    <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
+    <string name="add_customer">Kunde hinzufügen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="menu_home">Übersicht</string>
+    <string name="menu_customers">Kunden</string>
+    <string name="customer_list">Kundenliste</string>
+    <string name="menu_company">Firma Wechseln</string>
+</resources>

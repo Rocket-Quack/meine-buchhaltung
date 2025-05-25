@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rocketquackit.meinebuchhaltung.data.company.Company
+import com.rocketquackit.meinebuchhaltung.data.company.CompanyCategory
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDao
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyType
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
     // Felder für die Eingabe, passend zur Company-Datenklasse
     val companyName = MutableLiveData<String>()
     val businessType = MutableLiveData<CompanyType?>()
+    val businessCategory = MutableLiveData<CompanyCategory?>()
     val taxNumber = MutableLiveData<String>()
     val vatNumber = MutableLiveData<String?>()
     val registrationNumber = MutableLiveData<String?>()
@@ -31,6 +33,7 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
             val company = Company(
                 companyName = companyName.value ?: "",
                 businessType = businessType.value ?: throw IllegalStateException("Unternehmensform muss ausgewählt werden"),
+                businessCategory = businessCategory.value ?: throw IllegalStateException("Unternehmensart muss ausgewählt werden"),
                 taxNumber = taxNumber.value ?: "",
                 vatNumber = vatNumber.value,
                 registrationNumber = registrationNumber.value,

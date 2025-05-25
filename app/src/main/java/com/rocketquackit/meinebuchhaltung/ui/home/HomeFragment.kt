@@ -22,18 +22,27 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        // View Binding (bindet das Layout)
+        _binding = com.rocketquackit.meinebuchhaltung.databinding.FragmentHomeBinding.inflate(
+            inflater, container, false
+        )
         val root: View = binding.root
 
+        // Zugriff auf das TextView, das im Layout "textHome" heißt
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
+        // Aktive Firma aus SharedPreferences lesen
+        val prefs = requireContext().getSharedPreferences("firma_prefs", android.content.Context.MODE_PRIVATE)
+        val aktiveFirma = prefs.getString("aktiveFirma", "keine")
+        val dbName = "firma_${aktiveFirma}.db"
+
+        // Text anzeigen
+        textView.text = "Aktive Firma: $aktiveFirma\nDatenbank: $dbName"
+
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

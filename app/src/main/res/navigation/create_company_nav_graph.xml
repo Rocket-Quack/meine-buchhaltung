@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/create_company_nav_graph"
+    app:startDestination="@id/step1Fragment">
+
+    <!-- Schritt 1 Fragment -->
+    <fragment
+        android:id="@+id/step1Fragment"
+        android:name="com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.Step1Fragment"
+        android:label="Schritt 1">
+        <action
+            android:id="@+id/action_step1_to_step2"
+            app:destination="@id/step2Fragment"/>
+    </fragment>
+
+    <!-- Schritt 2 Fragment -->
+    <fragment
+        android:id="@+id/step2Fragment"
+        android:name="com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.Step2Fragment"
+        android:label="Schritt 2">
+        <action
+            android:id="@+id/action_step2_to_step3"
+            app:destination="@id/step3Fragment"/>
+    </fragment>
+
+    <!-- Schritt 3 Fragment -->
+    <fragment
+        android:id="@+id/step3Fragment"
+        android:name="com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.Step3Fragment"
+        android:label="Schritt 3">
+        <action
+            android:id="@+id/action_step3_to_step4"
+            app:destination="@id/step4Fragment"/>
+    </fragment>
+
+    <!-- Schritt 4 Fragment -->
+    <fragment
+        android:id="@+id/step4Fragment"
+        android:name="com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.Step4Fragment"
+        android:label="Schritt 4">
+        <action
+            android:id="@+id/action_step4_to_step5"
+            app:destination="@id/step5Fragment"/>
+    </fragment>
+
+    <!-- Schritt 5 Fragment -->
+    <fragment
+        android:id="@+id/step5Fragment"
+        android:name="com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.Step5Fragment"
+        android:label="Schritt 5"/>
+</navigation>

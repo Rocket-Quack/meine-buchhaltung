@@ -2,17 +2,18 @@ package com.rocketquackit.meinebuchhaltung.data
 
 import android.content.Context
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
+import com.rocketquackit.meinebuchhaltung.data.global.AllCompaniesDatabase
 
 object DatabaseProvider {
 
-    fun getFirmaDatabase(context: Context): CompanyDatabase {
-        val prefs = context.getSharedPreferences("firma_prefs", Context.MODE_PRIVATE)
-        val aktiveFirma = prefs.getString("aktiveFirma", null)
-            ?: throw IllegalStateException("Keine aktive Firma ausgewählt!")
-
-        // Datenbankname zusammensetzen z. B. "firma_Musterfirma.db"
-        val dbName = "firma_${aktiveFirma}.db"
-
-        return CompanyDatabase.getDatabase(context, dbName)
+    /** pro-Firma DB, z. B. "company_Firma.db" */
+    fun getCompanyDb(context: Context, companyName: String): CompanyDatabase {
+        val dbName = "company_${companyName}.db"
+        return CompanyDatabase.getInstance(context, dbName)
     }
+
+    /** globaler Company-Übersicht-DB */
+    fun getCompaniesDb(context: Context): AllCompaniesDatabase =
+        AllCompaniesDatabase.getInstance(context)
+
 }

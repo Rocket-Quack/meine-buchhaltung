@@ -1,72 +1,94 @@
 package com.rocketquackit.meinebuchhaltung.ui.customer
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
+import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
 import kotlinx.coroutines.launch
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
- * A simple [Fragment] subclass.
- * Use the [CustomerFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment zur Anzeige und Verwaltung der Kunden einer Firma.
+ * Lädt alle Kunden aus der Datenbank und zeigt sie in einer RecyclerView.
  */
 class CustomerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    // Datenbank-Instanz für die aktuell aktive Firma
+    private lateinit var companyDb: CompanyDatabase
+
+    // Name der aktiven Firma, geladen aus SharedPreferences
+    private lateinit var companyName: String
+
+    // RecyclerView und Adapter für die Anzeige der Kundenliste
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: CustomerAdapter
+    private val customerList: MutableList<Customer> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+        // Aktive Firma aus SharedPreferences auslesen
+        val prefs = requireContext().getSharedPreferences("firma_prefs", Context.MODE_PRIVATE)
+        companyName = prefs.getString("aktiveFirma", null)
+            ?: throw IllegalStateException("Keine aktiveFirma in SharedPreferences gefunden")
+
+        // Datenbank-Instanz initialisieren
+        companyDb = DatabaseProvider.getCompanyDb(requireContext(), companyName)
     }
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CustomerAdapter
-    private val customerList = mutableListOf<Customer>()
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Layout für dieses Fragment laden
         val view = inflater.inflate(R.layout.fragment_customer, container, false)
 
-        // RecyclerView einrichten
-        recyclerView = view.findViewById(R.id.recycler_customers)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = CustomerAdapter(customerList)
-        recyclerView.adapter = adapter
+        // RecyclerView und FloatingActionButton einrichten
+        initRecyclerView(view)
+        initFab(view)
 
-        // Button einrichten
-        val fab = view.findViewById<FloatingActionButton>(R.id.button_add_customer)
-        fab.setOnClickListener {
-            addTestCustomer()
-        }
-
+        // Kunden aus DB laden
         loadCustomers()
 
         return view
     }
 
+    /**
+     * Initialisiert RecyclerView und ihren Adapter.
+     */
+    private fun initRecyclerView(root: View) {
+        recyclerView = root.findViewById(R.id.recycler_customers)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = CustomerAdapter(customerList)
+        recyclerView.adapter = adapter
+    }
+
+    /**
+     * Setzt den Klick-Listener für den "Kunden hinzufügen"-Button.
+     */
+    private fun initFab(root: View) {
+        val fab = root.findViewById<FloatingActionButton>(R.id.button_add_customer)
+        fab.setOnClickListener {
+            addTestCustomer()
+        }
+    }
+
+    /**
+     * Fügt einen Beispiel-Kunden in die Datenbank ein und aktualisiert die Ansicht.
+     */
     private fun addTestCustomer() {
-        // Erstelle neuen Kunden
         val customer = Customer(
             name = "Max Mustermann",
-            companyName = "Muster GmbH",
+            companyName = companyName,
             street = "Hauptstraße",
             houseNumber = "12a",
             zipCode = "12345",
@@ -74,19 +96,19 @@ class CustomerFragment : Fragment() {
             email = "max@muster.de"
         )
 
-        // Zugriff auf die Datenbank der aktiven Firma → speichern
+        // DB-Operation im Hintergrund
         lifecycleScope.launch {
-            val db = DatabaseProvider.getFirmaDatabase(requireContext())
-            db.customerDao().insert(customer)
-            loadCustomers() // danach neu laden
+            companyDb.customerDao().insert(customer)
+            loadCustomers()
         }
     }
 
+    /**
+     * Lädt alle Kunden aus der DB und benachrichtigt den Adapter über Änderungen.
+     */
     private fun loadCustomers() {
         lifecycleScope.launch {
-            // Zugriff auf DB der aktiven Firma
-            val db = DatabaseProvider.getFirmaDatabase(requireContext())
-            val allCustomers = db.customerDao().getAll() // Alle Kunden dieser DB
+            val allCustomers = companyDb.customerDao().getAll()
             customerList.clear()
             customerList.addAll(allCustomers)
             adapter.notifyDataSetChanged()

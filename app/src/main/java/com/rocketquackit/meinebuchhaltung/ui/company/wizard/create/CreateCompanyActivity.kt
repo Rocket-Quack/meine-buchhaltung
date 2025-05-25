@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rocketquackit.meinebuchhaltung.R
+import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
 
 class CreateCompanyActivity : AppCompatActivity() {
@@ -12,8 +13,8 @@ class CreateCompanyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_company)
 
-        val db = CompanyDatabase.getDatabase(applicationContext, "firmen.db")
-        val factory = CreateCompanyViewModelFactory(db.firmaDao())
+        val db = DatabaseProvider.getCompaniesDb(applicationContext)
+        val factory = CreateCompanyViewModelFactory(db.companyDao())
         ViewModelProvider(this, factory).get(CreateCompanyViewModel::class.java)
     }
 }

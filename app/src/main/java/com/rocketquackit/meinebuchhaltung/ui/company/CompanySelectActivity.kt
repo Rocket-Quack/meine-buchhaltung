@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.rocketquackit.meinebuchhaltung.MainActivity
 import com.rocketquackit.meinebuchhaltung.R
+import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.Company
-import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
+import com.rocketquackit.meinebuchhaltung.data.global.AllCompaniesDatabase
 import kotlinx.coroutines.launch
 
 class CompanySelectActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class CompanySelectActivity : AppCompatActivity() {
     private lateinit var buttonLaden: Button
 
     private var selectedCompany: Company? = null
-    private lateinit var db: CompanyDatabase
+    private lateinit var db: AllCompaniesDatabase
     private lateinit var adapter: ArrayAdapter<String>
     private val firmenListe = mutableListOf<Company>()
 
@@ -30,7 +31,7 @@ class CompanySelectActivity : AppCompatActivity() {
         buttonErstellen = findViewById(R.id.buttonErstellen)
         buttonLaden = findViewById(R.id.buttonLaden)
 
-        db = CompanyDatabase.getDatabase(applicationContext, "firmen.db")
+        db = DatabaseProvider.getCompaniesDb(applicationContext)
 
         // Firmen laden
         loadFirmen()
@@ -69,7 +70,7 @@ class CompanySelectActivity : AppCompatActivity() {
 
     private fun loadFirmen() {
         lifecycleScope.launch {
-            val firmen = db.firmaDao().getAll()
+            val firmen = db.companyDao().getAll()
             firmenListe.clear()
             firmenListe.addAll(firmen)
             val namen = firmenListe.map { it.companyName }

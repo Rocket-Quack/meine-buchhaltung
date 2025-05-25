@@ -7,13 +7,17 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Dashboard</string>
     <string name="menu_customers">Kunden</string>
     <string name="customer_list">Kundenliste</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_company">Firma Wechseln</string>
+
+
+    <!-- Buttons -->
+    <string name="nextButton">Weiter</string>
+
+    <!-- Firma anlegen Wizard Steps -->
+    <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
 
     <string name="add_customer">Kunde hinzufügen</string>
 </resources>

@@ -58,7 +58,10 @@ output.json
 crashlytics-build.properties
 fabric.properties
 
-# --- Fastlane (optional) ---
+# --- Fastlane ---
 fastlane/report.xml
 fastlane/screenshots/
 fastlane/test_output/
+
+# Google Play API Keys
+fastlane-playconsole.json

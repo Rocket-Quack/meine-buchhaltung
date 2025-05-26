@@ -30,6 +30,9 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_PLAY_JSON }}" > /tmp/google_play_key.json
 
+      - name: Set Gradle Wrapper Permissions
+        run: chmod +x ./gradlew
+
       - name: Build AAB
         run: ./gradlew bundleRelease
 

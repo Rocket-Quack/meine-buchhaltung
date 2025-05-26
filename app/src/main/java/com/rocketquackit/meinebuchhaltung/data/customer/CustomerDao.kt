@@ -1,4 +1,4 @@
-package com.rocketquackit.meinebuchhaltung.ui.customer
+package com.rocketquackit.meinebuchhaltung.data.customer
 
 import androidx.room.*
 

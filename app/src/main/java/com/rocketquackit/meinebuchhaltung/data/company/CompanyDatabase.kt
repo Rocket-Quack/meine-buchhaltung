@@ -4,14 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.rocketquackit.meinebuchhaltung.ui.customer.Customer
-import com.rocketquackit.meinebuchhaltung.ui.customer.CustomerDao
+import com.rocketquackit.meinebuchhaltung.data.customer.Customer
+import com.rocketquackit.meinebuchhaltung.data.customer.CustomerDao
+import com.rocketquackit.meinebuchhaltung.data.invoice.Invoice
 
 // Datenbank für eine einzelne angelegte Firma
 @Database(
-    entities = [Customer::class, /*, … weitere Entities */],
+    entities = [Customer::class, Invoice::class, /*, … weitere Entities */],
     version = 1,
-    exportSchema = false
+    exportSchema = true
 )
 abstract class CompanyDatabase : RoomDatabase() {
     abstract fun customerDao(): CustomerDao

@@ -26,10 +26,6 @@ jobs:
       - run: |
           gem install fastlane
 
-      - name: Decrypt Google Play JSON Secret
-        run: |
-          echo "${{ secrets.GOOGLE_PLAY_JSON }}" > /tmp/google_play_key.json
-
       - name: Set Gradle Wrapper Permissions
         run: chmod +x ./gradlew
 
@@ -38,6 +34,6 @@ jobs:
 
       - name: Deploy to Google Play (Fastlane)
         env:
-          SUPPLY_JSON_KEY: /tmp/google_play_key.json
+          SUPPLY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON }}
         run: |
           fastlane deploy_internal

@@ -40,4 +40,4 @@ jobs:
         env:
           SUPPLY_JSON_KEY: /tmp/google_play_key.json
         run: |
-          fastlane deploy
+          fastlane deploy_internal

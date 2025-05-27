@@ -30,7 +30,7 @@ platform :android do
     gradle(task: "clean bundleRelease") # build .aab file
 
     supply(
-      json_key: ENV["SUPPLY_JSON_KEY"],
+      json_key_data: ENV["SUPPLY_JSON_KEY"],
       package_name: "com.rocketquackit.meinebuchhaltung",
       track: "internal", # Uploads to internal testing track
       aab: "app/build/outputs/bundle/release/app-release.aab"

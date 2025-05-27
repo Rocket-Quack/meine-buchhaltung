@@ -26,19 +26,9 @@ jobs:
       - run: |
           gem install fastlane
 
-      - name: Set Gradle Wrapper Permissions
-        run: chmod +x ./gradlew
-
       - name: Decode Keystore and save as file
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > /tmp/keystore.jks
-
-      - name: Build Signed AAB
-        run: |
-          ./gradlew bundleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks \
-                                  -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} \
-                                  -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} \
-                                  -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
       - name: Decode JSON Key and save as file
         run: |
@@ -47,5 +37,9 @@ jobs:
       - name: Deploy to Google Play (Fastlane)
         env:
           SUPPLY_JSON_KEY: /tmp/google_play_key.json
+          KEYSTORE_FILE: /tmp/keystore.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          fastlane deploy_internal
+          bundle exec fastlane deploy_internal

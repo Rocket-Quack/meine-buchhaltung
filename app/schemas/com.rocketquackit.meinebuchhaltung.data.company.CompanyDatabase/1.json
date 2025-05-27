@@ -2,57 +2,58 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "eef578e36400c7ef8ff49b6837c3ede8",
+    "identityHash": "9c55f4a7f38d884dab21ae0c90dcf95e",
     "entities": [
       {
-        "tableName": "company",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`companyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `companyName` TEXT NOT NULL, `businessType` TEXT NOT NULL, `businessCategory` TEXT NOT NULL, `taxNumber` TEXT NOT NULL, `vatNumber` TEXT, `registrationNumber` TEXT, `address` TEXT NOT NULL, `phoneNumber` TEXT, `email` TEXT NOT NULL, `website` TEXT, `companyBankIBAN` TEXT, `companyBankBIC` TEXT, `companyBankName` TEXT, `companyLogo` BLOB, `createdAt` INTEGER NOT NULL, `lastModifiedAt` INTEGER NOT NULL)",
+        "tableName": "customers",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `companyLogo` BLOB, `companyName` TEXT, `street` TEXT, `houseNumber` TEXT, `zipCode` TEXT, `city` TEXT, `email` TEXT, `phoneNumber` TEXT, `website` TEXT, `iban` TEXT, `bic` TEXT, `vatNumber` TEXT, `taxNumber` TEXT, `outstandingAmount` REAL NOT NULL, `createdAt` INTEGER NOT NULL, `lastModifiedAt` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "companyId",
-            "columnName": "companyId",
+            "fieldPath": "id",
+            "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "companyLogo",
+            "columnName": "companyLogo",
+            "affinity": "BLOB"
+          },
+          {
             "fieldPath": "companyName",
             "columnName": "companyName",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "businessType",
-            "columnName": "businessType",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "businessCategory",
-            "columnName": "businessCategory",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "taxNumber",
-            "columnName": "taxNumber",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "vatNumber",
-            "columnName": "vatNumber",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "registrationNumber",
-            "columnName": "registrationNumber",
+            "fieldPath": "street",
+            "columnName": "street",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "address",
-            "columnName": "address",
-            "affinity": "TEXT",
-            "notNull": true
+            "fieldPath": "houseNumber",
+            "columnName": "houseNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "zipCode",
+            "columnName": "zipCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "phoneNumber",
@@ -60,35 +61,35 @@
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "email",
-            "columnName": "email",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "website",
             "columnName": "website",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "companyBankIBAN",
-            "columnName": "companyBankIBAN",
+            "fieldPath": "iban",
+            "columnName": "iban",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "companyBankBIC",
-            "columnName": "companyBankBIC",
+            "fieldPath": "bic",
+            "columnName": "bic",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "companyBankName",
-            "columnName": "companyBankName",
+            "fieldPath": "vatNumber",
+            "columnName": "vatNumber",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "companyLogo",
-            "columnName": "companyLogo",
-            "affinity": "BLOB"
+            "fieldPath": "taxNumber",
+            "columnName": "taxNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "outstandingAmount",
+            "columnName": "outstandingAmount",
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "createdAt",
@@ -106,13 +107,13 @@
         "primaryKey": {
           "autoGenerate": true,
           "columnNames": [
-            "companyId"
+            "id"
           ]
         }
       },
       {
-        "tableName": "customers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `companyName` TEXT NOT NULL, `street` TEXT NOT NULL, `houseNumber` TEXT NOT NULL, `zipCode` TEXT NOT NULL, `city` TEXT NOT NULL, `email` TEXT NOT NULL)",
+        "tableName": "invoices",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `customerId` INTEGER NOT NULL, `invoiceNumber` TEXT NOT NULL, `referenceNumber` TEXT, `netAmount` REAL NOT NULL, `vatAmount` REAL NOT NULL, `grossAmount` REAL NOT NULL, `currency` TEXT NOT NULL, `discountAmount` REAL NOT NULL, `discountPercentage` REAL NOT NULL, `totalAmount` REAL NOT NULL, `outstandingAmount` REAL NOT NULL, `invoiceDate` TEXT NOT NULL, `dueDate` TEXT NOT NULL, `status` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`customerId`) REFERENCES `customers`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`currency`) REFERENCES `currencies`(`code`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
         "fields": [
           {
             "fieldPath": "id",
@@ -121,45 +122,92 @@
             "notNull": true
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "customerId",
+            "columnName": "customerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoiceNumber",
+            "columnName": "invoiceNumber",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "companyName",
-            "columnName": "companyName",
+            "fieldPath": "referenceNumber",
+            "columnName": "referenceNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "netAmount",
+            "columnName": "netAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vatAmount",
+            "columnName": "vatAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "grossAmount",
+            "columnName": "grossAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currency",
+            "columnName": "currency",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "street",
-            "columnName": "street",
+            "fieldPath": "discountAmount",
+            "columnName": "discountAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "discountPercentage",
+            "columnName": "discountPercentage",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalAmount",
+            "columnName": "totalAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "outstandingAmount",
+            "columnName": "outstandingAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoiceDate",
+            "columnName": "invoiceDate",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "houseNumber",
-            "columnName": "houseNumber",
+            "fieldPath": "dueDate",
+            "columnName": "dueDate",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "zipCode",
-            "columnName": "zipCode",
+            "fieldPath": "status",
+            "columnName": "status",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "city",
-            "columnName": "city",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "email",
-            "columnName": "email",
-            "affinity": "TEXT",
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -168,12 +216,77 @@
           "columnNames": [
             "id"
           ]
+        },
+        "indices": [
+          {
+            "name": "index_invoices_currency",
+            "unique": false,
+            "columnNames": [
+              "currency"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_currency` ON `${TABLE_NAME}` (`currency`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "customers",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "customerId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "currencies",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "currency"
+            ],
+            "referencedColumns": [
+              "code"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "currencies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `currency_name` TEXT NOT NULL, `symbol` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currency_name",
+            "columnName": "currency_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "symbol",
+            "columnName": "symbol",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "code"
+          ]
         }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eef578e36400c7ef8ff49b6837c3ede8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9c55f4a7f38d884dab21ae0c90dcf95e')"
     ]
   }
 }

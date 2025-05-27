@@ -10,4 +10,9 @@
     <string name="selectCompanyText">Select company</string>
     <string name="textViewCompanyWizardSetup">Create new company</string>
     <string name="add_customer">Add customer</string>
+    <string name="salesInvoice_status_open">Open</string>
+    <string name="salesInvoice_status_paid">Paid</string>
+    <string name="salesInvoice_status_overdue">Overdue</string>
+    <string name="salesInvoice_status_canceled">Cancelled</string>
+    <string name="salesInvoice_status_draft">Draft</string>
 </resources>

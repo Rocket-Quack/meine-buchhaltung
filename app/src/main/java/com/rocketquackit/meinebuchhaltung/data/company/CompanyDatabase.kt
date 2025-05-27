@@ -4,13 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.rocketquackit.meinebuchhaltung.data.currency.Currency
 import com.rocketquackit.meinebuchhaltung.data.customer.Customer
 import com.rocketquackit.meinebuchhaltung.data.customer.CustomerDao
 import com.rocketquackit.meinebuchhaltung.data.invoice.Invoice
 
 // Datenbank für eine einzelne angelegte Firma
 @Database(
-    entities = [Customer::class, Invoice::class, /*, … weitere Entities */],
+    entities = [
+        Customer::class,
+        Invoice::class,
+        Currency::class
+        // TODO Weitere Entities hinzufügen
+        ],
     version = 1,
     exportSchema = true
 )
@@ -26,7 +33,22 @@ abstract class CompanyDatabase : RoomDatabase() {
                     context.applicationContext,
                     CompanyDatabase::class.java,
                     databaseName
-                ).build()
+                ).addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        // Initiale Currencies-Daten einfügen
+                        val initialCurrencies = listOf(
+                            Currency("EUR", "Euro", "€"),
+                            Currency("USD", "US Dollar", "$"),
+                        )
+                        initialCurrencies.forEach { currency ->
+                            db.execSQL(
+                                "INSERT INTO currencies (code, currency_name, symbol) VALUES (?, ?, ?)",
+                                arrayOf(currency.code, currency.currency_name, currency.symbol)
+                            )
+                        }
+                    }
+                }).build()
             }
     }
 }

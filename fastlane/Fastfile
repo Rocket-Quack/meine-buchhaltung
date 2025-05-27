@@ -1,0 +1,47 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Optional: Runs unit tests"
+  lane :test do
+    begin
+      gradle(task: "test")
+    rescue => ex
+      UI.message("No tests found or failed: #{ex}")
+    end
+  end
+
+  desc "Deploy to Google Play Internal Track"
+  lane :deploy_internal do
+    gradle(
+      task: "clean bundleRelease", # build signed abb
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
+      }
+    )
+
+    supply(
+      json_key: ENV["SUPPLY_JSON_KEY"],
+      package_name: "com.rocketquackit.meinebuchhaltung",
+      track: "internal", # Uploads to internal testing track
+    )
+  end
+end
+

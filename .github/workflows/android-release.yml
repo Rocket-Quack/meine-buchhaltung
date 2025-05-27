@@ -1,0 +1,48 @@
+name: Android Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Ruby & Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+      - run: |
+          gem install fastlane
+
+      - name: Set Gradle Wrapper Permissions
+        run: chmod +x ./gradlew
+
+      - name: Decode Keystore and save as file
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > /tmp/keystore.jks
+
+      - name: Decode JSON Key and save as file
+        run: |
+          echo "${{ secrets.GOOGLE_PLAY_JSON }}" | base64 -d > /tmp/google_play_key.json
+
+      - name: Deploy to Google Play (Fastlane)
+        env:
+          SUPPLY_JSON_KEY: /tmp/google_play_key.json
+          KEYSTORE_FILE: /tmp/keystore.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          bundle exec fastlane deploy_internal

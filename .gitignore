@@ -12,7 +12,8 @@
 .gradle/
 build/
 */build/
-!gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
 
 # --- Local Properties ---
 local.properties
@@ -58,7 +59,10 @@ output.json
 crashlytics-build.properties
 fabric.properties
 
-# --- Fastlane (optional) ---
+# --- Fastlane ---
 fastlane/report.xml
 fastlane/screenshots/
 fastlane/test_output/
+
+# Google Play API Keys
+fastlane-playconsole.json

@@ -18,6 +18,25 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    signingConfigs {
+        create("release") {
+            val storeFilePath = findProperty("RELEASE_STORE_FILE") as? String
+            val storePassword = findProperty("RELEASE_STORE_PASSWORD") as? String
+            val keyAlias = findProperty("RELEASE_KEY_ALIAS") as? String
+            val keyPassword = findProperty("RELEASE_KEY_PASSWORD") as? String
+
+            if (storeFilePath != null && storePassword != null && keyAlias != null && keyPassword != null) {
+                storeFile = file(storeFilePath)
+                this.storePassword = storePassword
+                this.keyAlias = keyAlias
+                this.keyPassword = keyPassword
+            } else {
+                println("WARNUNG: Keine Signatur. Release-Build wird ohne Signatur konfiguriert.")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -25,6 +44,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {

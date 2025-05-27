@@ -32,8 +32,12 @@ jobs:
       - name: Build AAB
         run: ./gradlew bundleRelease
 
+      - name: Decode JSON Key and save as file
+        run: |
+          echo "${{ secrets.GOOGLE_PLAY_JSON }}" | base64 -d > /tmp/google_play_key.json
+
       - name: Deploy to Google Play (Fastlane)
         env:
-          SUPPLY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON }}
+          SUPPLY_JSON_KEY: /tmp/google_play_key.json
         run: |
           fastlane deploy_internal

@@ -7,6 +7,7 @@
     <string name="customer_list">Customer list</string>
     <string name="menu_company">Change company</string>
     <string name="nextButton">Next</string>
+    <string name="selectCompanyText">Select company</string>
     <string name="textViewCompanyWizardSetup">Create new company</string>
     <string name="add_customer">Add customer</string>
 </resources>

@@ -11,7 +11,7 @@ import com.rocketquackit.meinebuchhaltung.data.company.CompanyDao
 @Database(
     entities = [Company::class],
     version = 1,
-    exportSchema = false
+    exportSchema = true
 )
 abstract class AllCompaniesDatabase : RoomDatabase() {
     abstract fun companyDao(): CompanyDao

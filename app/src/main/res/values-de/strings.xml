@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Meine Buchhaltung</string>
     <string name="nextButton">Weiter</string>
+    <string name="selectCompanyText">Firma wählen</string>
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
     <string name="add_customer">Kunde hinzufügen</string>
     <string name="action_settings">Einstellungen</string>

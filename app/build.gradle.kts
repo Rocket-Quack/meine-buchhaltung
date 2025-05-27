@@ -18,12 +18,22 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     signingConfigs {
         create("release") {
-            storeFile = file(System.getenv("KEYSTORE_FILE") ?: project.findProperty("android.injected.signing.store.file") as String)
-            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: project.findProperty("android.injected.signing.store.password") as String
-            keyAlias = System.getenv("KEY_ALIAS") ?: project.findProperty("android.injected.signing.key.alias") as String
-            keyPassword = System.getenv("KEY_PASSWORD") ?: project.findProperty("android.injected.signing.key.password") as String
+            val storeFilePath = findProperty("RELEASE_STORE_FILE") as? String
+            val storePassword = findProperty("RELEASE_STORE_PASSWORD") as? String
+            val keyAlias = findProperty("RELEASE_KEY_ALIAS") as? String
+            val keyPassword = findProperty("RELEASE_KEY_PASSWORD") as? String
+
+            if (storeFilePath != null && storePassword != null && keyAlias != null && keyPassword != null) {
+                storeFile = file(storeFilePath)
+                this.storePassword = storePassword
+                this.keyAlias = keyAlias
+                this.keyPassword = keyPassword
+            } else {
+                println("WARNUNG: Keine Signatur. Release-Build wird ohne Signatur konfiguriert.")
+            }
         }
     }
 

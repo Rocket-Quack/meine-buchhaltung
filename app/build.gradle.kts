@@ -21,10 +21,10 @@ android {
 
     signingConfigs {
         create("release") {
-            val storeFilePath = findProperty("RELEASE_STORE_FILE") as? String
-            val storePassword = findProperty("RELEASE_STORE_PASSWORD") as? String
-            val keyAlias = findProperty("RELEASE_KEY_ALIAS") as? String
-            val keyPassword = findProperty("RELEASE_KEY_PASSWORD") as? String
+            val storeFilePath = findProperty("KEYSTORE_FILE") as? String
+            val storePassword = findProperty("KEYSTORE_PASSWORD") as? String
+            val keyAlias = findProperty("KEY_ALIAS") as? String
+            val keyPassword = findProperty("KEY_PASSWORD") as? String
 
             if (storeFilePath != null && storePassword != null && keyAlias != null && keyPassword != null) {
                 storeFile = file(storeFilePath)

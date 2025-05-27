@@ -29,8 +29,16 @@ jobs:
       - name: Set Gradle Wrapper Permissions
         run: chmod +x ./gradlew
 
-      - name: Build AAB
-        run: ./gradlew bundleRelease
+      - name: Decode Keystore and save as file
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > /tmp/keystore.jks
+
+      - name: Build Signed AAB
+        run: |
+          ./gradlew bundleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks \
+                                  -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} \
+                                  -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} \
+                                  -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
       - name: Decode JSON Key and save as file
         run: |

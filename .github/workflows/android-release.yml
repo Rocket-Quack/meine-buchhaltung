@@ -26,6 +26,9 @@ jobs:
       - run: |
           gem install fastlane
 
+      - name: Set Gradle Wrapper Permissions
+        run: chmod +x ./gradlew
+
       - name: Decode Keystore and save as file
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > /tmp/keystore.jks

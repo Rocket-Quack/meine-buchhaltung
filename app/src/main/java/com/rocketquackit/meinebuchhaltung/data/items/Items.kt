@@ -36,13 +36,11 @@ data class Items (
 
     // Artikel Daten allgemein
     val name: String,
-
     val description: String? = null,
-
     val price: Double,
 
+    // Artikel Kategorien und Steuersätze aus den jeweiligen Tabellen
     val categoryId: Int? = null,
-
     val vatRateId: Int? = null,
 
 

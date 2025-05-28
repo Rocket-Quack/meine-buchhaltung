@@ -2,12 +2,20 @@ package com.rocketquackit.meinebuchhaltung.data.customer
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Index
 
 /**
  * Diese Klasse stellt einen Kunden dar, der in einer Room-Datenbank gespeichert wird.
  * Jeder Kunde bekommt eine eindeutige ID.
  */
-@Entity(tableName = "customers")
+@Entity(
+    tableName = "customers",
+    indices = [
+        Index(value = ["email"], unique = true),     // Index auf Emails
+        Index(value = ["name"]),      // Index auf Namen
+        Index(value = ["companyName"])               // Index auf Firmennamen
+    ]
+)
 data class Customer(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0, // ID wird automatisch vergeben

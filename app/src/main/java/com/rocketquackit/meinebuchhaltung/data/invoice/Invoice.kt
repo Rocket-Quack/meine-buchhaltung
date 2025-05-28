@@ -3,6 +3,7 @@ package com.rocketquackit.meinebuchhaltung.data.invoice
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
@@ -12,6 +13,10 @@ import androidx.room.TypeConverters
  */
 @Entity(
     tableName = "invoices",
+    indices = [
+        Index(value = ["invoiceNumber"], unique = true), // Index auf die Rechnungsnummer
+        Index(value = ["referenceNumber"]), // Index auf die Referenznummer
+    ],
     foreignKeys = [
         ForeignKey(
             entity = com.rocketquackit.meinebuchhaltung.data.customer.Customer::class,

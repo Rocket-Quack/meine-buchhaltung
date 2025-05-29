@@ -15,5 +15,5 @@ data class VatRates(
     // Steuersatz Daten allgemein
     val name: String,
     val rate: Double,
-    val description: String? = null
+    val description: String? = null // "Standardrate" oder "Ermäßigter Satz"
 )

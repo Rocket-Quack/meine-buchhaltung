@@ -9,14 +9,27 @@ import com.rocketquackit.meinebuchhaltung.data.currency.Currency
 import com.rocketquackit.meinebuchhaltung.data.customer.Customer
 import com.rocketquackit.meinebuchhaltung.data.customer.CustomerDao
 import com.rocketquackit.meinebuchhaltung.data.invoice.Invoice
+import com.rocketquackit.meinebuchhaltung.data.invoice_items.InvoiceItemWithDetails
+import com.rocketquackit.meinebuchhaltung.data.invoice_items.InvoiceItems
+import com.rocketquackit.meinebuchhaltung.data.invoice_items.InvoiceItemsSum
+import com.rocketquackit.meinebuchhaltung.data.items.Items
+import com.rocketquackit.meinebuchhaltung.data.items_category.ItemsCategory
+import com.rocketquackit.meinebuchhaltung.data.payments.Payments
+import com.rocketquackit.meinebuchhaltung.data.vat_rates.VatRates
 
-// Datenbank für eine einzelne angelegte Firma
+// Datenbank für eine einzelne angelegte Firma und die benötigten Tabellen
 @Database(
     entities = [
         Customer::class,
         Invoice::class,
-        Currency::class
-        // TODO Weitere Entities hinzufügen
+        InvoiceItems::class,
+        InvoiceItemsSum::class,
+        InvoiceItemWithDetails:: class,
+        VatRates::class,
+        Currency::class,
+        Items::class,
+        ItemsCategory::class,
+        Payments::class,
         ],
     version = 1,
     exportSchema = true

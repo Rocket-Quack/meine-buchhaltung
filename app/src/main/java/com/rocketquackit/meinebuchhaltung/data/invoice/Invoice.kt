@@ -36,7 +36,7 @@ data class Invoice(
 
     // RechnungsID
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0, // ID der Invoice - > Wird automatisch vergeben
+    val invoiceId: Int = 0, // ID der Invoice - > Wird automatisch vergeben
     val customerId: Int, // ID des Kunden, zu dem die Rechnung gehört
 
     // Rechnungsdaten allgemein

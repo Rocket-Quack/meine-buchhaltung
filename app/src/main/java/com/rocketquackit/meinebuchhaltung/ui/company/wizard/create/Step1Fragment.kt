@@ -34,7 +34,11 @@ class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
         // Spinner Für Firmenart füllen und initalisieren
         // Enum-Werte holen und in Liste stecken und Adapter erstellen
         val companyTypes = CompanyType.entries.toList()
-        val companyTypesAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, companyTypes.map { it.displayName })
+        val companyTypesAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            companyTypes.map { it.getDisplayName(requireContext()) }
+        )
         companyTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCompanyType.adapter = companyTypesAdapter
 

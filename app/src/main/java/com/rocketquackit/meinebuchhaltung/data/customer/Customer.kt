@@ -12,7 +12,7 @@ import androidx.room.Index
     tableName = "customers",
     indices = [
         Index(value = ["email"], unique = true),     // Index auf Emails
-        Index(value = ["name"]),      // Index auf Namen
+        Index(value = ["name"]),                     // Index auf Namen
         Index(value = ["companyName"])               // Index auf Firmennamen
     ]
 )

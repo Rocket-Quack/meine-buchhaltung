@@ -12,7 +12,7 @@ import androidx.room.Query
  * Diese Schnittstelle erlaubt den Zugriff auf die items_category-Tabelle.
  */
 @Dao
-interface Items_CategoryDao {
+interface ItemsCategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(itemsCategory: ItemsCategory)

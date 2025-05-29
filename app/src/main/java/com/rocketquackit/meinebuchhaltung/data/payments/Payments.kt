@@ -11,7 +11,7 @@ import com.rocketquackit.meinebuchhaltung.data.invoice.Invoice
     foreignKeys = [
         ForeignKey(
             entity = Invoice::class,
-            parentColumns = ["id"],
+            parentColumns = ["invoiceId"],
             childColumns = ["invoiceId"],
             onDelete = ForeignKey.CASCADE // Wenn Invoice gelöscht wird, auch Zahlungen löschen
         )

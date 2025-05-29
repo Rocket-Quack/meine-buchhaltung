@@ -23,8 +23,6 @@ import com.rocketquackit.meinebuchhaltung.data.vat_rates.VatRates
         Customer::class,
         Invoice::class,
         InvoiceItems::class,
-        InvoiceItemsSum::class,
-        InvoiceItemWithDetails:: class,
         VatRates::class,
         Currency::class,
         Items::class,

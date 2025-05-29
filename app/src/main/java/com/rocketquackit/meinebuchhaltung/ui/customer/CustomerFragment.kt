@@ -89,12 +89,19 @@ class CustomerFragment : Fragment() {
     private fun addTestCustomer() {
         val customer = Customer(
             name = "Max Mustermann",
-            companyName = companyName,
+            companyName = "Test Kunden Firma",
             street = "Hauptstraße",
             houseNumber = "12a",
             zipCode = "12345",
             city = "Musterstadt",
-            email = "max@muster.de"
+            email = "max@muster.de",
+            phoneNumber = "+49 123 456789",
+            website = "www.mustermann.de",
+            iban = "DE12345678901234567890",
+            bic = "DEUTDEFFXXX",
+            vatNumber = "123456789",
+            taxNumber = "987654321",
+            outstandingAmount = 100.0,
         )
 
         // DB-Operation im Hintergrund

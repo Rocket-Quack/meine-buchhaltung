@@ -21,4 +21,20 @@
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
 
     <string name="add_customer">Kunde hinzufügen</string>
+
+    <!-- Rechnungs Status -->
+    <string name="salesInvoice_status_open">Offen</string>
+    <string name="salesInvoice_status_paid">Bezahlt</string>
+    <string name="salesInvoice_status_overdue">Überfällig</string>
+    <string name="salesInvoice_status_canceled">Abgebrochen</string>
+    <string name="salesInvoice_status_draft">Entwurf</string>
+
+    <!-- Firmen Arten -->
+    <string name="company_type_Einzelunternehmen" translatable="false">Einzelunternehmen</string>
+    <string name="company_type_Freiberuflich" translatable="false">Freiberuflich</string>
+    <string name="company_type_GbR" translatable="false">GbR</string>
+    <string name="company_type_UG" translatable="false">UG</string>
+    <string name="company_type_GmbH" translatable="false">GmbH</string>
+
+
 </resources>

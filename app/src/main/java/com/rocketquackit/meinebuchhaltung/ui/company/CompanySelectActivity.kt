@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.rocketquackit.meinebuchhaltung.MainActivity
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.Company
 import com.rocketquackit.meinebuchhaltung.data.global.AllCompaniesDatabase
+import com.rocketquackit.meinebuchhaltung.ui.auth.LoginActivity
 import kotlinx.coroutines.launch
 
 class CompanySelectActivity : AppCompatActivity() {
@@ -25,6 +27,17 @@ class CompanySelectActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Prüfen, ob der Benutzer eingeloggt ist
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            // Nicht eingeloggt, zur LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // CompanySelectActivity beenden
+            return
+        }
+
         setContentView(R.layout.activity_firma_auswahl)
 
         listView = findViewById(R.id.firmenListView)

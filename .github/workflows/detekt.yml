@@ -33,13 +33,13 @@ jobs:
           --config ${{ github.workspace }}/detekt.yml \
           --report sarif:${{ github.workspace }}/detekt.sarif.json
 
-    - name: Debug - list files
+    - name: Ensure SARIF file exists
       run: |
-        echo "Checking for generated SARIF file:"
-        ls -la ${{ github.workspace }}
+        if [ ! -f "${{ github.workspace }}/detekt.sarif.json" ]; then
+          echo '{ "runs": [] }' > ${{ github.workspace }}/detekt.sarif.json
+        fi
 
     - name: Upload SARIF report to GitHub
-      if: success() && exists('${{ github.workspace }}/detekt.sarif.json')
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: ${{ github.workspace }}/detekt.sarif.json

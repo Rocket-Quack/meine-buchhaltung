@@ -12,6 +12,11 @@ on:
 env:
   DETEKT_RELEASE_TAG: v1.23.1
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   scan:
     name: Scan Kotlin Code with Detekt

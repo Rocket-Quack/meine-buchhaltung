@@ -24,22 +24,22 @@ jobs:
     - name: Setup Detekt
       run: |
         curl -sSLo detekt-cli.jar https://github.com/detekt/detekt/releases/download/${{ env.DETEKT_RELEASE_TAG }}/detekt-cli-${{ env.DETEKT_RELEASE_TAG }}-all.jar
-        echo "java -jar detekt-cli.jar" > detekt
-        chmod +x detekt
-        echo $PWD >> $GITHUB_PATH
 
     - name: Run Detekt Analysis
       continue-on-error: true
       run: |
-        # Optional: detekt-config.yml einbinden, falls vorhanden
-        CONFIG_FILE="${{ github.workspace }}/detekt.yml"
-        if [ -f "$CONFIG_FILE" ]; then
-          detekt --input ${{ github.workspace }} --config "$CONFIG_FILE" --report sarif:${{ github.workspace }}/detekt.sarif.json
-        else
-          detekt --input ${{ github.workspace }} --report sarif:${{ github.workspace }}/detekt.sarif.json
-        fi
+        java -jar detekt-cli.jar \
+          --input ${{ github.workspace }} \
+          --config ${{ github.workspace }}/detekt.yml \
+          --report sarif:${{ github.workspace }}/detekt.sarif.json
+
+    - name: Debug - list files
+      run: |
+        echo "Checking for generated SARIF file:"
+        ls -la ${{ github.workspace }}
 
     - name: Upload SARIF report to GitHub
+      if: success() && exists('${{ github.workspace }}/detekt.sarif.json')
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: ${{ github.workspace }}/detekt.sarif.json

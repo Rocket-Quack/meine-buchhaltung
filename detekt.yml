@@ -1,0 +1,62 @@
+build:
+  maxIssues: 0 # In CI-Umgebungen sofort Fehler bei Funden auslösen
+  excludeCorrectable: false
+
+processors:
+  active: true
+
+config:
+  validation: true
+
+style:
+  active: true
+  MagicNumber:
+    active: true
+    ignoreNumbers: [-1, 0, 1, 2]
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+  NamingConventionViolation:
+    active: true
+  WildcardImport:
+    active: true
+
+complexity:
+  active: true
+  TooManyFunctions:
+    active: true
+    thresholdInFiles: 15
+    thresholdInClasses: 10
+  LongMethod:
+    active: true
+    threshold: 30
+
+performance:
+  active: true
+  SpreadOperator:
+    active: true
+
+potential-bugs:
+  active: true
+  DuplicateCaseInWhenExpression:
+    active: true
+  EqualsWithHashCodeExist:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+
+exceptions:
+  active: true
+  TooGenericExceptionCaught:
+    active: true
+    exceptionNames: [Exception, Throwable]
+
+formatting:
+  active: true
+  Indentation:
+    active: true
+    indentSize: 4
+  NoWildcardImports:
+    active: true
+  ParameterListWrapping:
+    active: true

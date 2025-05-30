@@ -15,7 +15,6 @@ env:
 permissions:
   actions: read
   contents: read
-  security-events: write
 
 jobs:
   scan:
@@ -30,22 +29,22 @@ jobs:
       run: |
         curl -sSLo detekt-cli.jar https://github.com/detekt/detekt/releases/download/${{ env.DETEKT_RELEASE_TAG }}/detekt-cli-${{ env.DETEKT_RELEASE_TAG }}-all.jar
 
-    - name: Run Detekt Analysis
+    - name: Run Detekt Analysis and Generate Text Report
       continue-on-error: true
       run: |
         java -jar detekt-cli.jar \
           --input ${{ github.workspace }} \
           --config ${{ github.workspace }}/detekt.yml \
-          --report sarif:${{ github.workspace }}/detekt.sarif.json
+          --report txt:${{ github.workspace }}/detekt.txt
 
-    - name: Ensure SARIF file exists
+    - name: Debug - Check for Detekt Report
       run: |
-        if [ ! -f "${{ github.workspace }}/detekt.sarif.json" ]; then
-          echo '{ "runs": [] }' > ${{ github.workspace }}/detekt.sarif.json
-        fi
+        echo "Checking generated report:"
+        ls -la ${{ github.workspace }}
+        cat ${{ github.workspace }}/detekt.txt || echo "No detekt.txt found."
 
-    - name: Upload SARIF report to GitHub
-      uses: github/codeql-action/upload-sarif@v3
+    - name: Upload Detekt text report as Artifact
+      uses: actions/upload-artifact@v3
       with:
-        sarif_file: ${{ github.workspace }}/detekt.sarif.json
-        checkout_path: ${{ github.workspace }}
+        name: detekt-text-report
+        path: ${{ github.workspace }}/detekt.txt

@@ -7,14 +7,21 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.ui.company.CompanySelectActivity
+import com.rocketquackit.meinebuchhaltung.Constants
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Version aus Constants Holen und in TextView ausgeben
+        val versionName = Constants.getAppVersion(this)
+        val versionBanner = findViewById<TextView>(R.id.versionBanner)
+        versionBanner.text = versionName
 
         auth = FirebaseAuth.getInstance()
 

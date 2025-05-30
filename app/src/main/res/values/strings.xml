@@ -16,6 +16,15 @@
     <!-- Buttons -->
     <string name="nextButton">Weiter</string>
 
+    <!-- Login Seite -->
+    <string name="login_page_title">Willkommen bei Meine Buchhaltung</string>
+    <string name="login_page_hint">
+        Melde dich mit deiner E-Mail und deinem Passwort an,
+        oder fahre als Gast fort.
+
+        Alle Basisfunktionen sind auch ohne Anmeldung verfügbar.
+    </string>
+
     <!-- Firma anlegen Wizard Steps -->
     <string name="selectCompanyText">Firma wählen</string>
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>

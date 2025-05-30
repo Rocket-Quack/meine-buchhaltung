@@ -44,7 +44,7 @@ jobs:
         cat ${{ github.workspace }}/detekt.txt || echo "No detekt.txt found."
 
     - name: Upload Detekt text report as Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: detekt-text-report
         path: ${{ github.workspace }}/detekt.txt

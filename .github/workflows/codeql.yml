@@ -40,7 +40,7 @@ jobs:
 
     - if: matrix.language == 'java-kotlin' && matrix.build-mode == 'manual'
       run: |
-        ./gradlew build --no-daemon --stacktrace
+        ./gradlew assembleDebug --no-daemon --stacktrace
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

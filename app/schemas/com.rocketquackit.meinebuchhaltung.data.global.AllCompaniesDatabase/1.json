@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "97744f1fc09f023c31c7c4b361bffeac",
+    "identityHash": "4c67120609d101e961213f4fb8ac0ecc",
     "entities": [
       {
         "tableName": "company",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`companyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `companyName` TEXT NOT NULL, `businessType` TEXT NOT NULL, `businessCategory` TEXT NOT NULL, `taxNumber` TEXT NOT NULL, `vatNumber` TEXT, `registrationNumber` TEXT, `address` TEXT NOT NULL, `phoneNumber` TEXT, `email` TEXT NOT NULL, `website` TEXT, `companyBankIBAN` TEXT, `companyBankBIC` TEXT, `companyBankName` TEXT, `companyLogo` BLOB, `createdAt` INTEGER NOT NULL, `lastModifiedAt` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`companyId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `companyName` TEXT NOT NULL, `userId` TEXT NOT NULL, `businessType` TEXT NOT NULL, `businessCategory` TEXT NOT NULL, `taxNumber` TEXT NOT NULL, `vatNumber` TEXT, `registrationNumber` TEXT, `address` TEXT NOT NULL, `phoneNumber` TEXT, `email` TEXT NOT NULL, `website` TEXT, `companyBankIBAN` TEXT, `companyBankBIC` TEXT, `companyBankName` TEXT, `companyLogo` BLOB, `createdAt` INTEGER NOT NULL, `lastModifiedAt` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "companyId",
@@ -17,6 +17,12 @@
           {
             "fieldPath": "companyName",
             "columnName": "companyName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -113,7 +119,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '97744f1fc09f023c31c7c4b361bffeac')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4c67120609d101e961213f4fb8ac0ecc')"
     ]
   }
 }

@@ -14,7 +14,11 @@ class CreateCompanyActivity : AppCompatActivity() {
 
         val db = DatabaseProvider.getCompaniesDb(applicationContext)
         val factory = CreateCompanyViewModelFactory(db.companyDao())
-        ViewModelProvider(this, factory).get(CreateCompanyViewModel::class.java)
+
+        val userId = intent.getStringExtra("USER_ID")
+
+        val viewModel = ViewModelProvider(this, factory).get(CreateCompanyViewModel::class.java)
+        viewModel.userId = userId ?: ""
     }
 }
 

@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 data class Company(
     @PrimaryKey(autoGenerate = true) val companyId: Int = 0,
     val companyName: String, // Unternehmensnamen
+    val userId: String, // UserID aus Firebase
     @TypeConverters(CompanyTypeConverter::class)
     val businessType: CompanyType, // Unternehmensform (GmbH, UG)
     @TypeConverters(CompanyCategoryConverter::class)

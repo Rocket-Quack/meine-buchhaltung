@@ -51,8 +51,10 @@ class CompanySelectActivity : AppCompatActivity() {
 
         // Neue Firma anlegen
         buttonErstellen.setOnClickListener {
+            val uid = user.uid
             // Startet den Wizard (CreateCompanyActivity)
             val intent = Intent(this, com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.CreateCompanyActivity::class.java)
+            intent.putExtra("USER_ID", uid)
             startActivity(intent)
         }
 

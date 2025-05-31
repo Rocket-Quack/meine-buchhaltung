@@ -13,6 +13,7 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
 
     // Felder für die Eingabe, passend zur Company-Datenklasse
     val companyName = MutableLiveData<String>()
+    var userId: String = ""
     val businessType = MutableLiveData<CompanyType?>()
     val businessCategory = MutableLiveData<CompanyCategory?>()
     val taxNumber = MutableLiveData<String>()
@@ -32,6 +33,7 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
         viewModelScope.launch {
             val company = Company(
                 companyName = companyName.value ?: "",
+                userId = userId,
                 businessType = businessType.value ?: throw IllegalStateException("Unternehmensform muss ausgewählt werden"),
                 businessCategory = businessCategory.value ?: throw IllegalStateException("Unternehmensart muss ausgewählt werden"),
                 taxNumber = taxNumber.value ?: "",
@@ -45,7 +47,6 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
                 companyBankBIC = companyBankBIC.value,
                 companyBankName = companyBankName.value,
                 companyLogo = companyLogo.value
-                // createdAt und lastModifiedAt werden automatisch gesetzt
             )
             companyDao.insert(company)
         }

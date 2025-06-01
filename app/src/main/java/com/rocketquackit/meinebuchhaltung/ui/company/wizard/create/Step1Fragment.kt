@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -50,6 +51,10 @@ class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
         val companyCategoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, companyCategory.map { it.displayName })
         companyCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCompanyCategory.adapter = companyCategoryAdapter
+
+        // Fortschritts Balken anzeigen und Fortschritt zeigen
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.setProgress(20, true) // Fortschritt in Prozent (0-100)
 
 
         val nextButton = view.findViewById<Button>(R.id.nextButton)

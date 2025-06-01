@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.rocketquackit.meinebuchhaltung.R
@@ -24,6 +25,11 @@ class Step5Fragment : Fragment(R.layout.fragment_company_create_step5) {
         inputIban.setText(viewModel.companyBankIBAN.value ?: "")
         inputBic.setText(viewModel.companyBankBIC.value ?: "")
         inputBankName.setText(viewModel.companyBankName.value ?: "")
+
+        // Fortschritts Balken anzeigen und Fortschritt zeigen
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.setProgress(100, true) // Fortschritt in Prozent (0-100)
+
 
         finishButton.setOnClickListener {
             // Speichern der Daten ins ViewModel

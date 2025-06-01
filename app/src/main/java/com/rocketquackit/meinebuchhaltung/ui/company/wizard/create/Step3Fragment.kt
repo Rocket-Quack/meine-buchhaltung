@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +21,10 @@ class Step3Fragment : Fragment(R.layout.fragment_company_create_step3) {
 
         inputAddress.setText(viewModel.address.value ?: "")
         inputPhone.setText(viewModel.phoneNumber.value ?: "")
+
+        // Fortschritts Balken anzeigen und Fortschritt zeigen
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.setProgress(60, true) // Fortschritt in Prozent (0-100)
 
         nextButton.setOnClickListener {
             viewModel.address.value = inputAddress.text.toString()

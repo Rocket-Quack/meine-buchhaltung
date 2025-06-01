@@ -4,6 +4,7 @@
     <string name="nextButton">Weiter</string>
     <string name="selectCompanyText">Firma wählen</string>
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
+    <string name="textViewCompanyWizardSetup_Step2">Steuerinformationen</string>
     <string name="add_customer">Kunde hinzufügen</string>
     <string name="action_settings">Einstellungen</string>
     <string name="menu_home">Übersicht</string>

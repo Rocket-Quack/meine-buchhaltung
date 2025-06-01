@@ -13,6 +13,7 @@ import com.rocketquackit.meinebuchhaltung.data.company.Company
 import com.rocketquackit.meinebuchhaltung.data.global.AllCompaniesDatabase
 import com.rocketquackit.meinebuchhaltung.ui.auth.LoginActivity
 import kotlinx.coroutines.launch
+import androidx.appcompat.app.AlertDialog
 
 class CompanySelectActivity : AppCompatActivity() {
 
@@ -62,6 +63,27 @@ class CompanySelectActivity : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             selectedCompany = firmenListe[position]
             Toast.makeText(this, "Ausgewählt: ${selectedCompany?.companyName}", Toast.LENGTH_SHORT).show()
+        }
+
+        // Firma löschen
+        listView.setOnItemLongClickListener { _, _, position, _ ->
+            val firmaToDelete = firmenListe[position]
+
+            // Zeige Bestätigungsdialog
+            AlertDialog.Builder(this)
+                .setTitle("Firma löschen")
+                .setMessage("Möchtest du die Firma '${firmaToDelete.companyName}' wirklich löschen?")
+                .setPositiveButton("Ja") { _, _ ->
+                    lifecycleScope.launch {
+                        db.companyDao().delete(firmaToDelete)
+                        Toast.makeText(this@CompanySelectActivity, "Firma gelöscht", Toast.LENGTH_SHORT).show()
+                        loadFirmen() // Liste aktualisieren
+                    }
+                }
+                .setNegativeButton("Abbrechen", null)
+                .show()
+
+            true
         }
 
         // Firma laden

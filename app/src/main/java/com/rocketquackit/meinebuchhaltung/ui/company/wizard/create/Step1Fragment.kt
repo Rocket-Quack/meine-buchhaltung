@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -56,13 +57,22 @@ class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         progressBar.setProgress(20, true) // Fortschritt in Prozent (0-100)
 
-
         val nextButton = view.findViewById<Button>(R.id.nextButton)
 
         // Weiter-Button klickbar machen
         nextButton.setOnClickListener {
-            // Unternehmensnamen ins ViewModel speichern
-            viewModel.companyName.value = inputName.text.toString()
+            // Unternehmensnamen aus dem Eingabefeld holen und dabei Trailing-Whitespace entfernen
+            val companyName = inputName.text.toString().trimEnd()
+
+            // Validierung: Prüfen, ob das Feld leer ist
+            if (companyName.isEmpty()) {
+                inputName.error = "@string/textViewCompanyWizardMissingCompanyName"
+                Toast.makeText(requireContext(), "@string/textViewCompanyWizardMissingCompanyName", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener // Wemn Feld leer zurück gehen
+            }
+
+            // Wenn nicht leer, ins ViewModel speichern
+            viewModel.companyName.value = companyName
 
             // Aktuell ausgewählten Enum-Wert aus dem Spinner für Unternehmensform holen
             val selectedCompanyPosition = spinnerCompanyType.selectedItemPosition

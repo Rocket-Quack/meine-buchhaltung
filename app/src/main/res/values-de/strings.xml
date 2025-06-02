@@ -4,7 +4,12 @@
     <string name="nextButton">Weiter</string>
     <string name="selectCompanyText">Firma wählen</string>
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
+    <string name="textViewCompanyWizardMissingCompanyName">Bitte einen Firmennamen angeben</string>
     <string name="textViewCompanyWizardSetup_Step2">Steuerinformationen</string>
+    <string name="textViewCompanyWizardSetup_Step3">Firmen Adresse</string>
+    <string name="textViewCompanyWizardSetup_Step4">Kontaktmöglichkeiten</string>
+    <string name="textViewCompanyWizardSetup_Step5">Bankdaten</string>
+    <string name="textViewCompanyWizardHintCompanyName">Firmenname</string>
     <string name="add_customer">Kunde hinzufügen</string>
     <string name="action_settings">Einstellungen</string>
     <string name="menu_home">Übersicht</string>
@@ -21,4 +26,5 @@
     <string name="company_type_GbR">GbR</string>
     <string name="company_type_UG">UG</string>
     <string name="company_type_GmbH">GmbH</string>
+    <string name="login_page_title">Willkommen bei Meine Buchhaltung</string>
 </resources>

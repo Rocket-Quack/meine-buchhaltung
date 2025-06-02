@@ -9,11 +9,17 @@
     <string name="nextButton">Next</string>
     <string name="selectCompanyText">Select company</string>
     <string name="textViewCompanyWizardSetup">Create new company</string>
+    <string name="textViewCompanyWizardMissingCompanyName">Please enter a company name</string>
     <string name="textViewCompanyWizardSetup_Step2">Tax information</string>
+    <string name="textViewCompanyWizardSetup_Step3">Company address</string>
+    <string name="textViewCompanyWizardSetup_Step4">Contact options</string>
+    <string name="textViewCompanyWizardSetup_Step5">Bank details</string>
+    <string name="textViewCompanyWizardHintCompanyName">Company name</string>
     <string name="add_customer">Add customer</string>
     <string name="salesInvoice_status_open">Open</string>
     <string name="salesInvoice_status_paid">Paid</string>
     <string name="salesInvoice_status_overdue">Overdue</string>
     <string name="salesInvoice_status_canceled">Cancelled</string>
     <string name="salesInvoice_status_draft">Draft</string>
+    <string name="login_page_title">Welcome to My Accounting</string>
 </resources>

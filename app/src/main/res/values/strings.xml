@@ -27,8 +27,20 @@
 
     <!-- Firma anlegen Wizard Steps -->
     <string name="selectCompanyText">Firma wählen</string>
+
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
+    <string name="textViewCompanyWizardHintCompanyName">Firmenname</string>
+    <string name="textViewCompanyWizardMissingCompanyName">Bitte einen Firmennamen angeben</string>
+
     <string name="textViewCompanyWizardSetup_Step2">Steuerinformationen</string>
+
+    <string name="textViewCompanyWizardSetup_Step3">Firmen Adresse</string>
+
+    <string name="textViewCompanyWizardSetup_Step4">Kontaktmöglichkeiten</string>
+
+    <string name="textViewCompanyWizardSetup_Step5">Bankdaten</string>
+
+
 
     <string name="add_customer">Kunde hinzufügen</string>
 

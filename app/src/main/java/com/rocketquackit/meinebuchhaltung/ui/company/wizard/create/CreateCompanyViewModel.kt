@@ -7,6 +7,7 @@ import com.rocketquackit.meinebuchhaltung.data.company.Company
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyCategory
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDao
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyType
+import com.rocketquackit.meinebuchhaltung.data.global.Address
 import kotlinx.coroutines.launch
 
 class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
@@ -19,7 +20,7 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
     val taxNumber = MutableLiveData<String>()
     val vatNumber = MutableLiveData<String?>()
     val registrationNumber = MutableLiveData<String?>()
-    val address = MutableLiveData<String>()
+    val address = MutableLiveData<Address>()
     val phoneNumber = MutableLiveData<String?>()
     val email = MutableLiveData<String>()
     val website = MutableLiveData<String?>()
@@ -39,7 +40,13 @@ class CreateCompanyViewModel(private val companyDao: CompanyDao) : ViewModel() {
                 taxNumber = taxNumber.value ?: "",
                 vatNumber = vatNumber.value,
                 registrationNumber = registrationNumber.value,
-                address = address.value ?: "",
+                address = address.value ?: Address(
+                    street = "",
+                    houseNumber = "",
+                    postalCode = "",
+                    city = "",
+                    country = ""
+                ),
                 phoneNumber = phoneNumber.value,
                 email = email.value ?: "",
                 website = website.value,

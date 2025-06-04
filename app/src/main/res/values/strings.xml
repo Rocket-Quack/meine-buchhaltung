@@ -33,6 +33,14 @@
     <string name="textViewCompanyWizardMissingCompanyName">Bitte einen Firmennamen angeben</string>
 
     <string name="textViewCompanyWizardSetup_Step2">Steuerinformationen</string>
+    <string name="textViewCompanyWizardSteuernummerTooltip">
+        Bitte geben deine Steuernummer an.&#10;Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901
+    </string>
+    <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">
+        Bitte gib deine Umsatzsteuer-Id an, falls vorhanden. Sie beginnt in der Regel mit einem Länderkürzel (z. B. DE) und enthält insgesamt 11 Zeichen (z. B. DE123456789).
+    </string>
+    <string name="textViewCompanyWizardMissingTaxNumber">Bitte einen Steuernummer angeben</string>
+    <string name="textViewCompanyWizardWrongTaxNumber">Die Steuernummer ist nicht gültig. Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901</string>"
 
     <string name="textViewCompanyWizardSetup_Step3">Firmen Adresse</string>
 

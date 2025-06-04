@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -59,12 +60,25 @@ class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
 
         val nextButton = view.findViewById<Button>(R.id.nextButton)
 
+        // Sobald alle Felder aktiviert wird der Alpha Wert des Buttons auf 1 gesetzt und aktiviert
+        fun updateButtonState() {
+            val isValid = inputName.text.toString().isNotBlank()
+            nextButton.isEnabled = isValid
+            nextButton.alpha = if (isValid) 1.0f else 0.5f
+        }
+
+        // Listener registrieren
+        inputName.addTextChangedListener { updateButtonState() }
+
+        // initial prüfen
+        updateButtonState()
+
         // Weiter-Button klickbar machen
         nextButton.setOnClickListener {
             // Unternehmensnamen aus dem Eingabefeld holen und dabei Trailing-Whitespace entfernen
             val companyName = inputName.text.toString().trimEnd()
 
-            // Validierung: Prüfen, ob das Feld leer ist
+            // Validierung: Prüfen, ob das Feld Unternehemensnamen leer ist
             if (companyName.isEmpty()) {
                 inputName.error = "@string/textViewCompanyWizardMissingCompanyName"
                 Toast.makeText(requireContext(), "@string/textViewCompanyWizardMissingCompanyName", Toast.LENGTH_SHORT).show()

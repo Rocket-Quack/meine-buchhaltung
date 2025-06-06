@@ -6,6 +6,7 @@ package com.rocketquackit.meinebuchhaltung
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.NavigationUI
+import com.google.firebase.auth.FirebaseAuth
 import com.rocketquackit.meinebuchhaltung.databinding.ActivityMainBinding
 import com.rocketquackit.meinebuchhaltung.ui.company.CompanySelectActivity
 
@@ -39,6 +41,27 @@ class MainActivity : AppCompatActivity() {
         // Zugriff auf die Navigation Drawer-Komponenten (Seitennavigation)
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
+
+        val headerView = navView.getHeaderView(0)
+        val userNameTextView = headerView.findViewById<TextView>(R.id.userNameTextView)
+        val userEmailTextView = headerView.findViewById<TextView>(R.id.userEmailTextView)
+
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            if (user.isAnonymous) {
+                userNameTextView.text = "Anonym"
+                userEmailTextView.text = "" // Keine E-Mail für anonym
+            } else {
+                userNameTextView.text = user.displayName ?: "Angemeldet"
+                userEmailTextView.text = user.email ?: ""
+            }
+        } else {
+            userNameTextView.text = "Nicht angemeldet"
+            userEmailTextView.text = ""
+        }
+
+
 
         // Zugriff auf den NavController, der Navigation zwischen Fragmenten steuert
         val navController = findNavController(R.id.nav_host_fragment_content_main)

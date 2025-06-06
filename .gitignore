@@ -66,3 +66,6 @@ fastlane/test_output/
 
 # Google Play API Keys
 fastlane-playconsole.json
+
+# Firebase Service Key
+/app/google-services.json

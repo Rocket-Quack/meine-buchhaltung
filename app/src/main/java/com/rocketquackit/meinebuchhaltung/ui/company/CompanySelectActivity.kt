@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.rocketquackit.meinebuchhaltung.MainActivity
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.Company
 import com.rocketquackit.meinebuchhaltung.data.global.AllCompaniesDatabase
+import com.rocketquackit.meinebuchhaltung.ui.auth.LoginActivity
 import kotlinx.coroutines.launch
+import androidx.appcompat.app.AlertDialog
 
 class CompanySelectActivity : AppCompatActivity() {
 
@@ -25,6 +28,17 @@ class CompanySelectActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Prüfen, ob der Benutzer eingeloggt ist
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            // Nicht eingeloggt, zur LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // CompanySelectActivity beenden
+            return
+        }
+
         setContentView(R.layout.activity_firma_auswahl)
 
         listView = findViewById(R.id.firmenListView)
@@ -38,8 +52,10 @@ class CompanySelectActivity : AppCompatActivity() {
 
         // Neue Firma anlegen
         buttonErstellen.setOnClickListener {
+            val uid = user.uid
             // Startet den Wizard (CreateCompanyActivity)
             val intent = Intent(this, com.rocketquackit.meinebuchhaltung.ui.company.wizard.create.CreateCompanyActivity::class.java)
+            intent.putExtra("USER_ID", uid)
             startActivity(intent)
         }
 
@@ -47,6 +63,27 @@ class CompanySelectActivity : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             selectedCompany = firmenListe[position]
             Toast.makeText(this, "Ausgewählt: ${selectedCompany?.companyName}", Toast.LENGTH_SHORT).show()
+        }
+
+        // Firma löschen
+        listView.setOnItemLongClickListener { _, _, position, _ ->
+            val firmaToDelete = firmenListe[position]
+
+            // Zeige Bestätigungsdialog
+            AlertDialog.Builder(this)
+                .setTitle("Firma löschen")
+                .setMessage("Möchtest du die Firma '${firmaToDelete.companyName}' wirklich löschen?")
+                .setPositiveButton("Ja") { _, _ ->
+                    lifecycleScope.launch {
+                        db.companyDao().delete(firmaToDelete)
+                        Toast.makeText(this@CompanySelectActivity, "Firma gelöscht", Toast.LENGTH_SHORT).show()
+                        loadFirmen() // Liste aktualisieren
+                    }
+                }
+                .setNegativeButton("Abbrechen", null)
+                .show()
+
+            true
         }
 
         // Firma laden

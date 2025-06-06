@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
+    // Firebase Google Services
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -72,15 +74,23 @@ dependencies {
     // Room Libraries
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.firebase.auth.ktx)
     ksp(libs.androidx.room.compiler)
 
     // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Firebase BoM
+    implementation(platform(libs.firebase.bom))
+    // Firebase Auth
+    implementation(libs.google.firebase.auth.ktx)
 }
 
 // KSP Schema Export für Room
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
+
+apply(plugin = "com.google.gms.google-services")

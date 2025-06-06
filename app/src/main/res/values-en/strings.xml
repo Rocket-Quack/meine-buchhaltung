@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Meine Buchhaltung</string>
+    <string name="app_name">Street</string>
     <string name="action_settings">Settings</string>
     <string name="menu_home">Dashboard</string>
     <string name="menu_customers">Customers</string>
     <string name="customer_list">Customer list</string>
     <string name="menu_company">Change company</string>
     <string name="nextButton">Next</string>
+    <string name="login_page_hint">Log in with your e-mail and password, or continue as a guest.          All basic functions are also available without registration.</string>
     <string name="selectCompanyText">Select company</string>
     <string name="textViewCompanyWizardSetup">Create new company</string>
     <string name="textViewCompanyWizardMissingCompanyName">Please enter a company name</string>
     <string name="textViewCompanyWizardSetup_Step2">Tax information</string>
+    <string name="textViewCompanyWizardMissingTaxNumber">Please enter a tax number</string>
+    <string name="textViewCompanyWizardWrongTaxNumber">The tax number is not valid. This usually has the format: 10-13 digits, e.g. 12345678901</string>
     <string name="textViewCompanyWizardSetup_Step3">Company address</string>
     <string name="textViewCompanyWizardSetup_Step4">Contact options</string>
     <string name="textViewCompanyWizardSetup_Step5">Bank details</string>
@@ -22,4 +25,20 @@
     <string name="salesInvoice_status_canceled">Cancelled</string>
     <string name="salesInvoice_status_draft">Draft</string>
     <string name="login_page_title">Welcome to My Accounting</string>
+    <string name="textViewCompanyWizardSteuernummerTooltip">Please enter your tax number &#10;This usually has the format: 10-13 digits, e.g. 12345678901</string>
+    <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">Please enter your VAT ID, if available. It usually begins with a country code (e.g. DE) and contains a total of 11 characters (e.g. DE123456789).</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="Street">Street</string>
+    <string name="Missing_Street">Please enter a street</string>
+    <string name="HouseNumber">House number</string>
+    <string name="MissingHouseNumber">Please enter a house number</string>
+    <string name="PostalCode">Zip code</string>
+    <string name="MissingPostalCode">Please enter a postal code</string>
+    <string name="City">City</string>
+    <string name="MissingCity">Please enter a city</string>
+    <string name="Country">Country</string>
+    <string name="MissingCountry">Please specify a country</string>
+    <string name="Phone">Phone number</string>
+    <string name="MissingPhone">Please enter a telephone number</string>
+    <string name="finishButton">Done</string>
 </resources>

@@ -10,7 +10,7 @@ import androidx.room.*
 interface CustomerDao {
 
     // Kunden speichern (insert oder update)
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(customer: Customer)
 
     // Kunden löschen

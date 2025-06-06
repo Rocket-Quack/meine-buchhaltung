@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"
-                android:hint="Straße"
+                android:hint="@string/Street"
                 android:inputType="text" />
 
             <EditText
@@ -53,7 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:hint="Hausnummer" />
+                android:hint="@string/HouseNumber"
+            />
 
         </LinearLayout>
 
@@ -62,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Postleitzahl"
+            android:hint="@string/PostalCode"
             android:inputType="text" />
 
         <EditText
@@ -72,7 +73,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Stadt" />
+            android:text="@string/City" />
 
         <AutoCompleteTextView
             android:id="@+id/inputCountry"
@@ -87,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Telefonnummer" />
+            android:hint="@string/Phone" />
 
     </LinearLayout>
 

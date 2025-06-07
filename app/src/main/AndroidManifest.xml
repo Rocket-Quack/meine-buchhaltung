@@ -27,6 +27,10 @@
             android:name=".ui.company.wizard.create.CreateCompanyActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.customer.wizard.create.CreateCustomerActivity"
+            android:exported="false"/>
+
         <activity android:name=".MainActivity" />
 
         <activity android:name=".ui.auth.LoginActivity" />

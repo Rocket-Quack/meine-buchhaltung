@@ -44,6 +44,9 @@
     <!-- Kunde -->
     <string name="add_customer">Kunde hinzufügen</string>
 
+    <!-- Kunde anlegen Wizard -->
+    <string name="textViewCustomerWizardSetup">Neuer Kunde</string>
+
     <!-- Rechnungs Status -->
     <string name="salesInvoice_status_open">Offen</string>
     <string name="salesInvoice_status_paid">Bezahlt</string>
@@ -62,6 +65,7 @@
     <string name="nextButton">Weiter</string>
     <string name="finishButton">Fertig</string>
     <string name="cancelButton">Abbrechen</string>
+    <string name="saveButton">Speichern</string>
 
     <!-- Adressen -->
     <string name="Street">Straße</string>

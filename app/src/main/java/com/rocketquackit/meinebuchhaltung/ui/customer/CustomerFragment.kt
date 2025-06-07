@@ -1,6 +1,7 @@
 package com.rocketquackit.meinebuchhaltung.ui.customer
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
 import com.rocketquackit.meinebuchhaltung.data.customer.Customer
+import com.rocketquackit.meinebuchhaltung.ui.customer.wizard.create.CreateCustomerActivity
 import kotlinx.coroutines.launch
 
 /**
@@ -79,36 +81,18 @@ class CustomerFragment : Fragment() {
     private fun initFab(root: View) {
         val fab = root.findViewById<FloatingActionButton>(R.id.button_add_customer)
         fab.setOnClickListener {
-            addTestCustomer()
+            val intent = Intent(requireContext(), CreateCustomerActivity::class.java)
+            startActivity(intent)
         }
     }
 
     /**
-     * Fügt einen Beispiel-Kunden in die Datenbank ein und aktualisiert die Ansicht.
+     * Wird aufgerufen, wenn das Fragment wieder sichtbar wird.
+     * Lädt die Kunden erneut aus der DB, um Änderungen direkt anzuzeigen.
      */
-    private fun addTestCustomer() {
-        val customer = Customer(
-            name = "Max Mustermann",
-            companyName = "Test Kunden Firma",
-            street = "Hauptstraße",
-            houseNumber = "12a",
-            zipCode = "12345",
-            city = "Musterstadt",
-            email = "max@muster.de",
-            phoneNumber = "+49 123 456789",
-            website = "www.mustermann.de",
-            iban = "DE12345678901234567890",
-            bic = "DEUTDEFFXXX",
-            vatNumber = "123456789",
-            taxNumber = "987654321",
-            outstandingAmount = 100.0,
-        )
-
-        // DB-Operation im Hintergrund
-        lifecycleScope.launch {
-            companyDb.customerDao().insert(customer)
-            loadCustomers()
-        }
+    override fun onResume() {
+        super.onResume()
+        loadCustomers()
     }
 
     /**

@@ -33,6 +33,7 @@
     <string name="textViewCompanyWizardSteuernummerTooltip">"Bitte geben deine Steuernummer an.&#10;Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901     "</string>
     <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">"Bitte gib deine Umsatzsteuer-Id an, falls vorhanden. Sie beginnt in der Regel mit einem Länderkürzel (z. B. DE) und enthält insgesamt 11 Zeichen (z. B. DE123456789).     "</string>
     <string name="cancelButton">Abbrechen</string>
+    <string name="saveButton">Speichern</string>
     <string name="Street">Straße</string>
     <string name="Missing_Street">Bitte eine Straße angeben</string>
     <string name="HouseNumber">Hausnummer</string>

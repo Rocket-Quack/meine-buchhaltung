@@ -24,11 +24,6 @@
     <string name="salesInvoice_status_overdue">Überfällig</string>
     <string name="salesInvoice_status_canceled">Abgebrochen</string>
     <string name="salesInvoice_status_draft">Entwurf</string>
-    <string name="company_type_Einzelunternehmen">Einzelunternehmen</string>
-    <string name="company_type_Freiberuflich">Freiberuflich</string>
-    <string name="company_type_GbR">GbR</string>
-    <string name="company_type_UG">UG</string>
-    <string name="company_type_GmbH">GmbH</string>
     <string name="login_page_title">Willkommen bei Meine Buchhaltung</string>
     <string name="textViewCompanyWizardSteuernummerTooltip">"Bitte geben deine Steuernummer an.&#10;Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901     "</string>
     <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">"Bitte gib deine Umsatzsteuer-Id an, falls vorhanden. Sie beginnt in der Regel mit einem Länderkürzel (z. B. DE) und enthält insgesamt 11 Zeichen (z. B. DE123456789).     "</string>

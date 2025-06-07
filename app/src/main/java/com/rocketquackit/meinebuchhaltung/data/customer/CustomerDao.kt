@@ -19,7 +19,7 @@ interface CustomerDao {
 
     // Alle Kunden laden
     @Query("SELECT * FROM customers")
-    suspend fun getAll(): List<Customer>
+    fun getAllFlow(): kotlinx.coroutines.flow.Flow<List<Customer>>
 
     // Von einem Kunden den Offenen Betrag ausgeben
     @Query("SELECT * FROM customers WHERE outstandingAmount > 0")

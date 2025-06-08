@@ -40,9 +40,6 @@ class CustomerFragment : Fragment() {
     // ViewModel zur Bereitstellung der Kundenliste als Flow
     private val viewModel: CustomerViewModel by viewModels()
 
-    // Lokale Liste für den Adapter (dient als Datenquelle für RecyclerView)
-    private val customerList: MutableList<Customer> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

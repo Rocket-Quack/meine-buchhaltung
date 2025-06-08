@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Street</string>
+    <string name="app_name">My bookkeeping</string>
     <string name="action_settings">Settings</string>
     <string name="menu_home">Dashboard</string>
     <string name="menu_customers">Customers</string>

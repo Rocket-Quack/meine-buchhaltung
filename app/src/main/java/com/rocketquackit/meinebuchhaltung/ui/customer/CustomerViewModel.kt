@@ -18,7 +18,7 @@ class CustomerViewModel(application: Application) : AndroidViewModel(application
     private val db = DatabaseProvider.getCompanyDb(application, companyName)
 
     val customers: StateFlow<List<Customer>> = db.customerDao()
-        .getAllFlow()
+        .getAllCustomersSortedFlow()
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),

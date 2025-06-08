@@ -71,6 +71,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    // Fastscoll
+    implementation(libs.fastscroll)
+
     // Room Libraries
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

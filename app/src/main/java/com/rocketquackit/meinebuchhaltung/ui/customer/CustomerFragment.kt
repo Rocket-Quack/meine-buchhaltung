@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.l4digital.fastscroll.FastScrollRecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
@@ -34,7 +34,7 @@ class CustomerFragment : Fragment() {
     private lateinit var companyName: String
 
     // RecyclerView-Komponenten zur Darstellung der Kundenliste
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: FastScrollRecyclerView
     private lateinit var adapter: CustomerAdapter
 
     // ViewModel zur Bereitstellung der Kundenliste als Flow

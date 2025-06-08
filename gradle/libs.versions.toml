@@ -16,6 +16,7 @@ navigationFragmentKtx = "2.9.0"
 navigationUiKtx = "2.9.0"
 firebase-bom = "33.15.0"
 firebaseAuthKtx = "23.2.1"
+fastscroll = "2.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+fastscroll = { group = "io.github.l4digital", name = "fastscroll", version.ref = "fastscroll" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

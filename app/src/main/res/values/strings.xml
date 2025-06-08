@@ -40,6 +40,9 @@
 
     <!-- Firma anlegen Wizard Step 5 -->
     <string name="textViewCompanyWizardSetup_Step5">Bankdaten</string>
+    
+    <!-- Firma Allgemein -->
+    <string name="company_logo">Firmenlogo</string>
 
     <!-- Kunde -->
     <string name="add_customer">Kunde hinzufügen</string>

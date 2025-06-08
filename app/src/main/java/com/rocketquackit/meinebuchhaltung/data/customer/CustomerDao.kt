@@ -17,6 +17,10 @@ interface CustomerDao {
     @Delete
     suspend fun delete(customer: Customer)
 
+    // Kunde anhand seiner ID laden
+    @Query("SELECT * FROM customers WHERE id = :id")
+    fun getCustomerById(id: Int): Customer?
+
     // Alle Kunden laden
     @Query("SELECT * FROM customers")
     fun getAllCustomersFlow(): kotlinx.coroutines.flow.Flow<List<Customer>>

@@ -18,7 +18,10 @@ import com.rocketquackit.meinebuchhaltung.data.customer.Customer
  * Verwendet ListAdapter, um effizient nur geänderte Einträge zu aktualisieren.
  * Nur das, was sich wirklich in der Liste ändert, wird angezeigt
  */
-class CustomerAdapter : ListAdapter<Customer, CustomerAdapter.CustomerViewHolder>(CustomerDiffCallback()), FastScroller.SectionIndexer {
+class CustomerAdapter(
+    private val onCustomerClick: (Customer) -> Unit
+) : ListAdapter<Customer, CustomerAdapter.CustomerViewHolder>(CustomerDiffCallback()), FastScroller.SectionIndexer {
+
 
     class CustomerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameText: TextView = itemView.findViewById(R.id.text_name)
@@ -36,6 +39,7 @@ class CustomerAdapter : ListAdapter<Customer, CustomerAdapter.CustomerViewHolder
         val customer = getItem(position)
         holder.nameText.text = customer.name
 
+        // Wenn ein Firmenname vorhanden ist, zeige es an, sonst zeige es nicht
         if (customer.companyName.isNullOrEmpty()) {
             holder.companyText.visibility = View.GONE
         } else {
@@ -43,11 +47,17 @@ class CustomerAdapter : ListAdapter<Customer, CustomerAdapter.CustomerViewHolder
             holder.companyText.visibility = View.VISIBLE
         }
 
+        // Wenn ein Logo vorhanden ist, zeige es an, sonst zeige ein Platzhalterbild
         if (customer.companyLogo != null) {
             val bitmap = BitmapFactory.decodeByteArray(customer.companyLogo, 0, customer.companyLogo.size)
             holder.logoImage.setImageBitmap(bitmap)
         } else {
             holder.logoImage.setImageResource(R.drawable.company)
+        }
+
+        // Setze den Klick-Listener
+        holder.itemView.setOnClickListener {
+            onCustomerClick(customer)
         }
     }
 

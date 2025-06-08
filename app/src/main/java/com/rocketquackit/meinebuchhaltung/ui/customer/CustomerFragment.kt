@@ -90,7 +90,11 @@ class CustomerFragment : Fragment() {
     private fun initRecyclerView(root: View) {
         recyclerView = root.findViewById(R.id.recycler_customers)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = CustomerAdapter()
+        adapter = CustomerAdapter { customer ->
+            val intent = Intent(requireContext(), CustomerDetailActivity::class.java)
+            intent.putExtra("customer_id", customer.id)
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
     }
 

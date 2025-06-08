@@ -17,7 +17,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
-import com.rocketquackit.meinebuchhaltung.data.customer.Customer
 import com.rocketquackit.meinebuchhaltung.ui.customer.wizard.create.CreateCustomerActivity
 import kotlinx.coroutines.launch
 

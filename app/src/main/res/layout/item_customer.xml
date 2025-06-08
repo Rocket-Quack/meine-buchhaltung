@@ -1,63 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="12dp">
 
+    <!-- Firmenlogo (wenn vorhanden) -->
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/company_logo"
+        android:src="@drawable/company"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Kundendaten -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/info_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:orientation="vertical"
-        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_logo"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/text_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextName" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_company"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextCompany" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/text_street"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextStreet" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/text_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextCity" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextEmail" />
+            android:textSize="14sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Street</string>
+    <string name="app_name">My bookkeeping</string>
     <string name="action_settings">Settings</string>
     <string name="menu_home">Dashboard</string>
     <string name="menu_customers">Customers</string>
@@ -28,6 +28,7 @@
     <string name="textViewCompanyWizardSteuernummerTooltip">Please enter your tax number &#10;This usually has the format: 10-13 digits, e.g. 12345678901</string>
     <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">Please enter your VAT ID, if available. It usually begins with a country code (e.g. DE) and contains a total of 11 characters (e.g. DE123456789).</string>
     <string name="cancelButton">Cancel</string>
+    <string name="saveButton">Save</string>
     <string name="Street">Street</string>
     <string name="Missing_Street">Please enter a street</string>
     <string name="HouseNumber">House number</string>

@@ -38,6 +38,11 @@ jobs:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
 
+    - name: Decode Firebase Service JSON save as file
+      run: |
+        echo "${{ secrets.FIREBASE_SERVICE_JSON }}" | base64 -d > app/google-services.json
+
+
     - if: matrix.language == 'java-kotlin' && matrix.build-mode == 'manual'
       run: |
         ./gradlew assembleDebug --no-daemon --stacktrace

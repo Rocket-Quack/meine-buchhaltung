@@ -1,4 +1,5 @@
 <resources>
+    <!-- Allgemein TODO Überarbeiten -->
     <string name="app_name">Meine Buchhaltung</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,15 +13,42 @@
     <string name="customer_list">Kundenliste</string>
     <string name="menu_company">Firma Wechseln</string>
 
-
-    <!-- Buttons -->
-    <string name="nextButton">Weiter</string>
+    <!-- Login Seite -->
+    <string name="login_page_title">Willkommen bei Meine Buchhaltung</string>
+    <string name="login_page_hint">Melde dich mit deiner E-Mail und deinem Passwort an, oder fahre als Gast fort. Alle Basisfunktionen sind auch ohne Anmeldung verfügbar.</string>
 
     <!-- Firma anlegen Wizard Steps -->
     <string name="selectCompanyText">Firma wählen</string>
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
 
+    <!-- Firma anlegen Wizard Step 1 -->
+    <string name="textViewCompanyWizardHintCompanyName">Firmenname</string>
+    <string name="textViewCompanyWizardMissingCompanyName">Bitte einen Firmennamen angeben</string>
+
+    <!-- Firma anlegen Wizard Step 2 -->
+    <string name="textViewCompanyWizardSetup_Step2">Steuerinformationen</string>
+    <string name="textViewCompanyWizardSteuernummerTooltip">"Bitte geben deine Steuernummer an.&#10;Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901     "</string>
+    <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">"Bitte gib deine Umsatzsteuer-Id an, falls vorhanden. Sie beginnt in der Regel mit einem Länderkürzel (z. B. DE) und enthält insgesamt 11 Zeichen (z. B. DE123456789).     "</string>
+    <string name="textViewCompanyWizardMissingTaxNumber">Bitte einen Steuernummer angeben</string>
+    <string name="textViewCompanyWizardWrongTaxNumber">Die Steuernummer ist nicht gültig. Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901</string>"
+
+    <!-- Firma anlegen Wizard Step 3 -->
+    <string name="textViewCompanyWizardSetup_Step3">Firmen Adresse</string>
+
+    <!-- Firma anlegen Wizard Step 4 -->
+    <string name="textViewCompanyWizardSetup_Step4">Kontaktmöglichkeiten</string>
+
+    <!-- Firma anlegen Wizard Step 5 -->
+    <string name="textViewCompanyWizardSetup_Step5">Bankdaten</string>
+    
+    <!-- Firma Allgemein -->
+    <string name="company_logo">Firmenlogo</string>
+
+    <!-- Kunde -->
     <string name="add_customer">Kunde hinzufügen</string>
+
+    <!-- Kunde anlegen Wizard -->
+    <string name="textViewCustomerWizardSetup">Neuer Kunde</string>
 
     <!-- Rechnungs Status -->
     <string name="salesInvoice_status_open">Offen</string>
@@ -35,6 +63,33 @@
     <string name="company_type_GbR" translatable="false">GbR</string>
     <string name="company_type_UG" translatable="false">UG</string>
     <string name="company_type_GmbH" translatable="false">GmbH</string>
+
+    <!-- Buttons -->
+    <string name="nextButton">Weiter</string>
+    <string name="finishButton">Fertig</string>
+    <string name="cancelButton">Abbrechen</string>
+    <string name="saveButton">Speichern</string>
+
+    <!-- Adressen -->
+    <string name="Street">Straße</string>
+    <string name="Missing_Street">Bitte eine Strasse angeben</string>
+
+    <string name="HouseNumber">Hausnummer</string>
+    <string name="MissingHouseNumber">Bitte eine Hausnummer angeben</string>
+
+    <string name="PostalCode">Postleitzahl</string>
+    <string name="MissingPostalCode">Bitte eine Postleitzahl angeben</string>
+
+    <string name="City">Stadt</string>
+    <string name="MissingCity">Bitte eine Stadt angeben</string>
+
+    <string name="Country">Land</string>
+    <string name="MissingCountry">Bitte ein Land angeben</string>
+
+    <string name="Phone">Telefonnummer</string>
+    <string name="MissingPhone">Bitte eine Telefonnummer angeben</string>
+
+
 
 
 </resources>

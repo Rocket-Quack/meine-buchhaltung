@@ -10,16 +10,24 @@ import androidx.room.*
 interface CustomerDao {
 
     // Kunden speichern (insert oder update)
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(customer: Customer)
 
     // Kunden löschen
     @Delete
     suspend fun delete(customer: Customer)
 
+    // Kunde anhand seiner ID laden
+    @Query("SELECT * FROM customers WHERE id = :id")
+    fun getCustomerById(id: Int): Customer?
+
     // Alle Kunden laden
     @Query("SELECT * FROM customers")
-    suspend fun getAll(): List<Customer>
+    fun getAllCustomersFlow(): kotlinx.coroutines.flow.Flow<List<Customer>>
+
+    // Alle Kunden sortiert nach Namen laden
+    @Query("SELECT * FROM customers ORDER BY name COLLATE NOCASE ASC")
+    fun getAllCustomersSortedFlow(): kotlinx.coroutines.flow.Flow<List<Customer>>
 
     // Von einem Kunden den Offenen Betrag ausgeben
     @Query("SELECT * FROM customers WHERE outstandingAmount > 0")

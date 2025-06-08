@@ -5,7 +5,10 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Spinner
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -34,7 +37,11 @@ class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
         // Spinner Für Firmenart füllen und initalisieren
         // Enum-Werte holen und in Liste stecken und Adapter erstellen
         val companyTypes = CompanyType.entries.toList()
-        val companyTypesAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, companyTypes.map { it.displayName })
+        val companyTypesAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            companyTypes.map { it.getDisplayName(requireContext()) }
+        )
         companyTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCompanyType.adapter = companyTypesAdapter
 
@@ -47,13 +54,39 @@ class Step1Fragment : Fragment(R.layout.fragment_company_create_step1) {
         companyCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCompanyCategory.adapter = companyCategoryAdapter
 
+        // Fortschritts Balken anzeigen und Fortschritt zeigen
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.setProgress(20, true) // Fortschritt in Prozent (0-100)
 
         val nextButton = view.findViewById<Button>(R.id.nextButton)
 
+        // Sobald alle Felder aktiviert wird der Alpha Wert des Buttons auf 1 gesetzt und aktiviert
+        fun updateButtonState() {
+            val isValid = inputName.text.toString().isNotBlank()
+            nextButton.isEnabled = isValid
+            nextButton.alpha = if (isValid) 1.0f else 0.5f
+        }
+
+        // Listener registrieren
+        inputName.addTextChangedListener { updateButtonState() }
+
+        // initial prüfen
+        updateButtonState()
+
         // Weiter-Button klickbar machen
         nextButton.setOnClickListener {
-            // Unternehmensnamen ins ViewModel speichern
-            viewModel.companyName.value = inputName.text.toString()
+            // Unternehmensnamen aus dem Eingabefeld holen und dabei Trailing-Whitespace entfernen
+            val companyName = inputName.text.toString().trimEnd()
+
+            // Validierung: Prüfen, ob das Feld Unternehemensnamen leer ist
+            if (companyName.isEmpty()) {
+                inputName.error = "@string/textViewCompanyWizardMissingCompanyName"
+                Toast.makeText(requireContext(), "@string/textViewCompanyWizardMissingCompanyName", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener // Wemn Feld leer zurück gehen
+            }
+
+            // Wenn nicht leer, ins ViewModel speichern
+            viewModel.companyName.value = companyName
 
             // Aktuell ausgewählten Enum-Wert aus dem Spinner für Unternehmensform holen
             val selectedCompanyPosition = spinnerCompanyType.selectedItemPosition

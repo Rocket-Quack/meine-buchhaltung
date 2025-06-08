@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/create_customer_nav_graph"
+    app:startDestination="@id/customerStep1Fragment">
+
+    <!-- Schritt 1 Fragment -->
+    <fragment
+        android:id="@+id/customerStep1Fragment"
+        android:name="com.rocketquackit.meinebuchhaltung.ui.customer.wizard.create.Step1Fragment"
+        android:label="Kundendaten Schritt 1"
+        />
+</navigation>

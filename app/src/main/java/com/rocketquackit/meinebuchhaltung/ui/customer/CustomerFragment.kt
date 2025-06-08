@@ -1,47 +1,54 @@
 package com.rocketquackit.meinebuchhaltung.ui.customer
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.l4digital.fastscroll.FastScrollRecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.company.CompanyDatabase
-import com.rocketquackit.meinebuchhaltung.data.customer.Customer
+import com.rocketquackit.meinebuchhaltung.ui.customer.detail.CustomerDetailActivity
+import com.rocketquackit.meinebuchhaltung.ui.customer.wizard.create.CreateCustomerActivity
 import kotlinx.coroutines.launch
 
 /**
  * Fragment zur Anzeige und Verwaltung der Kunden einer Firma.
- * Lädt alle Kunden aus der Datenbank und zeigt sie in einer RecyclerView.
+ * Die Kundenliste wird reaktiv über ein ViewModel mit Flow aktualisiert.
  */
 class CustomerFragment : Fragment() {
 
-    // Datenbank-Instanz für die aktuell aktive Firma
+    // Datenbank-Instanz für die aktuell aktive Firma (wird für andere Operationen benötigt)
     private lateinit var companyDb: CompanyDatabase
 
-    // Name der aktiven Firma, geladen aus SharedPreferences
+    // Firmenname der aktuell ausgewählten Firma (aus SharedPreferences geladen)
     private lateinit var companyName: String
 
-    // RecyclerView und Adapter für die Anzeige der Kundenliste
-    private lateinit var recyclerView: RecyclerView
+    // RecyclerView-Komponenten zur Darstellung der Kundenliste
+    private lateinit var recyclerView: FastScrollRecyclerView
     private lateinit var adapter: CustomerAdapter
-    private val customerList: MutableList<Customer> = mutableListOf()
+
+    // ViewModel zur Bereitstellung der Kundenliste als Flow
+    private val viewModel: CustomerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Aktive Firma aus SharedPreferences auslesen
+        // Auslesen des aktuellen Firmennamens aus SharedPreferences
         val prefs = requireContext().getSharedPreferences("firma_prefs", Context.MODE_PRIVATE)
         companyName = prefs.getString("aktiveFirma", null)
             ?: throw IllegalStateException("Keine aktiveFirma in SharedPreferences gefunden")
 
-        // Datenbank-Instanz initialisieren
+        // Datenbankinstanz für diese Firma laden
         companyDb = DatabaseProvider.getCompanyDb(requireContext(), companyName)
     }
 
@@ -50,76 +57,57 @@ class CustomerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Layout für dieses Fragment laden
+        // XML-Layout des Fragments laden
         val view = inflater.inflate(R.layout.fragment_customer, container, false)
 
-        // RecyclerView und FloatingActionButton einrichten
+        // UI-Komponenten initialisieren
         initRecyclerView(view)
         initFab(view)
 
-        // Kunden aus DB laden
-        loadCustomers()
+        // Beobachten der Kundenliste via Flow aus dem ViewModel
+        observeCustomerList()
 
         return view
     }
 
     /**
-     * Initialisiert RecyclerView und ihren Adapter.
+     * Beobachtet den Flow `customers` aus dem ViewModel.
+     * Immer wenn sich die Liste ändert, wird der RecyclerView aktualisiert.
+     */
+    private fun observeCustomerList() {
+        lifecycleScope.launch {
+            // Beobachtung nur aktiv, wenn das Fragment im sichtbaren Lifecycle-State ist
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.customers.collect { newList ->
+                    adapter.submitList(newList) // DiffUtil wird hier verwendet um geänderte Einträge zu aktualisieren
+                }
+            }
+        }
+    }
+
+    /**
+     * Setzt den RecyclerView mit Linearlayout und bindet den Adapter an.
      */
     private fun initRecyclerView(root: View) {
         recyclerView = root.findViewById(R.id.recycler_customers)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = CustomerAdapter(customerList)
+        adapter = CustomerAdapter { customer ->
+            val intent = Intent(requireContext(), CustomerDetailActivity::class.java)
+            intent.putExtra("customer_id", customer.id)
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
     }
 
     /**
-     * Setzt den Klick-Listener für den "Kunden hinzufügen"-Button.
+     * Setzt die Aktion für den FloatingActionButton (Plus-Button).
+     * Öffnet die Activity, in der ein neuer Kunde angelegt werden kann (Wizard).
      */
     private fun initFab(root: View) {
         val fab = root.findViewById<FloatingActionButton>(R.id.button_add_customer)
         fab.setOnClickListener {
-            addTestCustomer()
-        }
-    }
-
-    /**
-     * Fügt einen Beispiel-Kunden in die Datenbank ein und aktualisiert die Ansicht.
-     */
-    private fun addTestCustomer() {
-        val customer = Customer(
-            name = "Max Mustermann",
-            companyName = "Test Kunden Firma",
-            street = "Hauptstraße",
-            houseNumber = "12a",
-            zipCode = "12345",
-            city = "Musterstadt",
-            email = "max@muster.de",
-            phoneNumber = "+49 123 456789",
-            website = "www.mustermann.de",
-            iban = "DE12345678901234567890",
-            bic = "DEUTDEFFXXX",
-            vatNumber = "123456789",
-            taxNumber = "987654321",
-            outstandingAmount = 100.0,
-        )
-
-        // DB-Operation im Hintergrund
-        lifecycleScope.launch {
-            companyDb.customerDao().insert(customer)
-            loadCustomers()
-        }
-    }
-
-    /**
-     * Lädt alle Kunden aus der DB und benachrichtigt den Adapter über Änderungen.
-     */
-    private fun loadCustomers() {
-        lifecycleScope.launch {
-            val allCustomers = companyDb.customerDao().getAll()
-            customerList.clear()
-            customerList.addAll(allCustomers)
-            adapter.notifyDataSetChanged()
+            val intent = Intent(requireContext(), CreateCustomerActivity::class.java)
+            startActivity(intent)
         }
     }
 }

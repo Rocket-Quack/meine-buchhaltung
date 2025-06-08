@@ -2,8 +2,17 @@
 <resources>
     <string name="app_name">Meine Buchhaltung</string>
     <string name="nextButton">Weiter</string>
+    <string name="login_page_hint">Melde dich mit deiner E-Mail und deinem Passwort an,         oder fahre als Gast fort. Alle Basisfunktionen sind auch ohne Anmeldung verfügbar.</string>
     <string name="selectCompanyText">Firma wählen</string>
     <string name="textViewCompanyWizardSetup">Neue Firma anlegen</string>
+    <string name="textViewCompanyWizardMissingCompanyName">Bitte einen Firmennamen angeben</string>
+    <string name="textViewCompanyWizardSetup_Step2">Steuerinformationen</string>
+    <string name="textViewCompanyWizardMissingTaxNumber">Bitte einen Steuernummer angeben</string>
+    <string name="textViewCompanyWizardWrongTaxNumber">Die Steuernummer ist nicht gültig. Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901</string>
+    <string name="textViewCompanyWizardSetup_Step3">Firmen Adresse</string>
+    <string name="textViewCompanyWizardSetup_Step4">Kontaktmöglichkeiten</string>
+    <string name="textViewCompanyWizardSetup_Step5">Bankdaten</string>
+    <string name="textViewCompanyWizardHintCompanyName">Firmenname</string>
     <string name="add_customer">Kunde hinzufügen</string>
     <string name="action_settings">Einstellungen</string>
     <string name="menu_home">Übersicht</string>
@@ -15,9 +24,22 @@
     <string name="salesInvoice_status_overdue">Überfällig</string>
     <string name="salesInvoice_status_canceled">Abgebrochen</string>
     <string name="salesInvoice_status_draft">Entwurf</string>
-    <string name="company_type_Einzelunternehmen">Einzelunternehmen</string>
-    <string name="company_type_Freiberuflich">Freiberuflich</string>
-    <string name="company_type_GbR">GbR</string>
-    <string name="company_type_UG">UG</string>
-    <string name="company_type_GmbH">GmbH</string>
+    <string name="login_page_title">Willkommen bei Meine Buchhaltung</string>
+    <string name="textViewCompanyWizardSteuernummerTooltip">"Bitte geben deine Steuernummer an.&#10;Diese hat üblicherweise das Format: 10–13 Ziffern, z. B. 12345678901     "</string>
+    <string name="textViewCompanyWizardUmsatzsteuerIDTooltip">"Bitte gib deine Umsatzsteuer-Id an, falls vorhanden. Sie beginnt in der Regel mit einem Länderkürzel (z. B. DE) und enthält insgesamt 11 Zeichen (z. B. DE123456789).     "</string>
+    <string name="cancelButton">Abbrechen</string>
+    <string name="saveButton">Speichern</string>
+    <string name="Street">Straße</string>
+    <string name="Missing_Street">Bitte eine Straße angeben</string>
+    <string name="HouseNumber">Hausnummer</string>
+    <string name="MissingHouseNumber">Bitte eine Hausnummer angeben</string>
+    <string name="PostalCode">Postleitzahl</string>
+    <string name="MissingPostalCode">Bitte eine Postleitzahl angeben</string>
+    <string name="City">Stadt</string>
+    <string name="MissingCity">Bitte eine Stadt angeben</string>
+    <string name="Country">Land</string>
+    <string name="MissingCountry">Bitte ein Land angeben</string>
+    <string name="Phone">Telefonnummer</string>
+    <string name="MissingPhone">Bitte eine Telefonnummer angeben</string>
+    <string name="finishButton">Fertig</string>
 </resources>

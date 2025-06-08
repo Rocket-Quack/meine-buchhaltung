@@ -31,7 +31,9 @@
             android:name=".ui.customer.wizard.create.CreateCustomerActivity"
             android:exported="false"/>
 
-        <activity android:name=".ui.customer.CustomerDetailActivity" />
+        <activity android:name=".ui.customer.detail.CustomerDetailActivity" />
+
+        <activity android:name=".ui.customer.invoices.CustomerInvoicesActivity" />
 
         <activity android:name=".MainActivity" />
 

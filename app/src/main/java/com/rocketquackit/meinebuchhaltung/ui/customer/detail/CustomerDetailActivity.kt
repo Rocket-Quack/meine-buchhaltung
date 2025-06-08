@@ -1,13 +1,16 @@
-package com.rocketquackit.meinebuchhaltung.ui.customer
+package com.rocketquackit.meinebuchhaltung.ui.customer.detail
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.rocketquackit.meinebuchhaltung.R
 import com.rocketquackit.meinebuchhaltung.data.DatabaseProvider
 import com.rocketquackit.meinebuchhaltung.data.customer.Customer
+import com.rocketquackit.meinebuchhaltung.ui.customer.invoices.CustomerInvoicesActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,6 +63,14 @@ class CustomerDetailActivity : AppCompatActivity() {
                     populateUi(it)
                 }
             }
+        }
+
+        val invoiceCard = findViewById<CardView>(R.id.card_invoices)
+
+        invoiceCard.setOnClickListener {
+            val intent = Intent(this, CustomerInvoicesActivity::class.java)
+            intent.putExtra("customer_id", customerId)
+            startActivity(intent)
         }
     }
 
